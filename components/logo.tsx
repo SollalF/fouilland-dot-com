@@ -9,11 +9,11 @@ interface LogoProps {
 
 export const Logo = ({ size = 36, width, height, ...props }: LogoProps) => (
   <Image
-    src="/tutel.jpg"
     alt="Tutel Logo"
-    width={size || width}
-    height={size || height}
     className="rounded-full"
+    height={size || height}
+    src="/tutel.jpg"
+    width={size || width}
     {...props}
   />
 );

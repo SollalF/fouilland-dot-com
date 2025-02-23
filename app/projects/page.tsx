@@ -1,8 +1,9 @@
-import { title } from "@/components/primitives";
-import { Link } from "@heroui/link";
-import fs from "fs/promises";
 import path from "path";
+import fs from "fs/promises";
+
 import { Image } from "@heroui/image";
+import { Link } from "@heroui/link";
+import { title } from "@/components/primitives";
 
 interface ProjectMetadata {
   title: string;
@@ -19,9 +20,8 @@ export default async function ProjectsPage() {
       .filter((entry) => entry.isDirectory() && !entry.name.startsWith("_"))
       .map(async (entry) => {
         try {
-          // Dynamically import the project's page module
-          const module = await import(`./${entry.name}/page`);
-          const metadata = module.metadata as ProjectMetadata;
+          const projectModule = await import(`./${entry.name}/page`);
+          const metadata = projectModule.metadata as ProjectMetadata;
 
           return {
             slug: entry.name,
@@ -30,7 +30,6 @@ export default async function ProjectsPage() {
             image: metadata.image,
           };
         } catch (error) {
-          // Fallback if import fails or metadata doesn't exist
           return {
             slug: entry.name,
             title: entry.name,
@@ -49,15 +48,15 @@ export default async function ProjectsPage() {
         {projects.map((project) => (
           <Link
             href={`/projects/${project.slug}`}
-            key={project.slug}
             className="block p-6 rounded-lg border border-default-200 hover:border-default-400 transition-colors"
+            key={project.slug}
           >
             <div className="relative w-full aspect-video mb-4 rounded-lg overflow-hidden">
               <Image
-                src={project.image}
                 alt={`${project.title} thumbnail`}
                 className="object-cover"
                 sizes="(max-width: 768px) 100vw, 50vw"
+                src={project.image}
               />
             </div>
             <h2 className="text-xl font-bold mb-2">{project.title}</h2>
