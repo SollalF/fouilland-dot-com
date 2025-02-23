@@ -1,8 +1,10 @@
 import path from 'path';
 import fs from 'fs/promises';
 
-import { title } from '@/components/primitives';
+import { Image } from '@heroui/image';
+import { Link } from '@heroui/link';
 
+import { title } from '@/components/primitives';
 interface ProjectMetadata {
   title: string;
   description: string;
@@ -18,7 +20,7 @@ export default async function ProjectsPage() {
       .filter((entry) => entry.isDirectory() && !entry.name.startsWith('_'))
       .map(async (entry) => {
         try {
-          const projectModule = await import(`./${entry.name}/page`);
+          const projectModule = await import(`./${entry.name}/metadata`);
           const metadata = projectModule.metadata as ProjectMetadata;
 
           return {
@@ -41,7 +43,24 @@ export default async function ProjectsPage() {
   return (
     <div className="w-full">
       <h1 className={title()}>Projects</h1>
-      <div className="h-128 w-128 bg-white" />
+      <div className="mt-4 grid grid-cols-1 gap-4">
+        {projects.map((project) => (
+          <Link
+            key={project.slug}
+            className="relative aspect-video h-48 w-full rounded-xl border border-gray-200 bg-[url(/projects/boids-battleground/thumbnail.png)] bg-cover hover:border-gray-300"
+            href={`/projects/${project.slug}`}
+          >
+            <div className="absolute inset-0 rounded-xl">
+              <Image isZoomed alt={project.title} className="rounded-xl" height={190} src={project.image} />
+              <div className="pointer-events-none absolute inset-0 z-10 rounded-xl bg-gradient-to-t from-black/70 to-transparent" />
+            </div>
+            <div className="absolute bottom-0 left-0 right-0 z-10 p-4">
+              <div className="text-lg font-bold text-white">{project.title}</div>
+              <div className="text-sm text-gray-200">{project.description}</div>
+            </div>
+          </Link>
+        ))}
+      </div>
     </div>
   );
 }
