@@ -1,9 +1,9 @@
-import path from "path";
-import fs from "fs/promises";
+import path from 'path';
+import fs from 'fs/promises';
 
-import { Image } from "@heroui/image";
-import { Link } from "@heroui/link";
-import { title } from "@/components/primitives";
+import { Image } from '@heroui/image';
+import { Link } from '@heroui/link';
+import { title } from '@/components/primitives';
 
 interface ProjectMetadata {
   title: string;
@@ -12,12 +12,12 @@ interface ProjectMetadata {
 }
 
 export default async function ProjectsPage() {
-  const projectsDirectory = path.join(process.cwd(), "app/projects");
+  const projectsDirectory = path.join(process.cwd(), 'app/projects');
   const entries = await fs.readdir(projectsDirectory, { withFileTypes: true });
 
   const projects = await Promise.all(
     entries
-      .filter((entry) => entry.isDirectory() && !entry.name.startsWith("_"))
+      .filter((entry) => entry.isDirectory() && !entry.name.startsWith('_'))
       .map(async (entry) => {
         try {
           const projectModule = await import(`./${entry.name}/page`);
@@ -33,11 +33,11 @@ export default async function ProjectsPage() {
           return {
             slug: entry.name,
             title: entry.name,
-            description: "An error occurred while loading this project.",
-            image: "/projects/thumbnail.png",
+            description: 'An error occurred while loading this project.',
+            image: '/projects/thumbnail.png',
           };
         }
-      })
+      }),
   );
 
   return (
