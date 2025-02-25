@@ -1,9 +1,0 @@
-{
-  "typescript.tsdk": "node_modules/typescript/lib",
-  "editor.formatOnSave": true,
-  "editor.defaultFormatter": "rvest.vs-code-prettier-eslint",
-  "files.autoSave": "onFocusChange",
-  "editor.codeActionsOnSave": {
-    "source.fixAll.eslint": "always"
-  }
-}
