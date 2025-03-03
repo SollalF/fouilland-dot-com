@@ -11,6 +11,7 @@ import {
   navigationMenuTriggerStyle,
 } from "@/components/ui/navigation-menu";
 import { Button } from "@/components/ui/button";
+import { ModeToggle } from "./mode-toggle";
 
 const Navbar = () => {
   return (
@@ -48,7 +49,10 @@ const Navbar = () => {
           </NavigationMenuItem>
         </NavigationMenuList>
       </NavigationMenu>
-      <Button>Contact</Button>
+      <div className="flex flex-row gap-2">
+        <ModeToggle />
+        <Button>Contact</Button>
+      </div>
     </Card>
   );
 };
