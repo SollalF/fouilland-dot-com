@@ -56,7 +56,7 @@ const BoidsSimulation = () => {
     let centerY = 0;
     let numNeighbors = 0;
 
-    for (let otherBoid of boids) {
+    for (const otherBoid of boids) {
       if (distance(boid, otherBoid) < visualRange) {
         centerX += otherBoid.x;
         centerY += otherBoid.y;
@@ -78,7 +78,7 @@ const BoidsSimulation = () => {
     let moveX = 0;
     let moveY = 0;
 
-    for (let otherBoid of boids) {
+    for (const otherBoid of boids) {
       if (otherBoid !== boid) {
         if (distance(boid, otherBoid) < minDistance) {
           moveX += boid.x - otherBoid.x;
@@ -97,7 +97,7 @@ const BoidsSimulation = () => {
     let avgDY = 0;
     let numNeighbors = 0;
 
-    for (let otherBoid of boids) {
+    for (const otherBoid of boids) {
       if (distance(boid, otherBoid) < visualRange) {
         avgDX += otherBoid.dx;
         avgDY += otherBoid.dy;
@@ -160,7 +160,7 @@ const BoidsSimulation = () => {
     const height = canvas.height;
 
     // Update each boid
-    for (let boid of boids) {
+    for (const boid of boids) {
       flyTowardsCenter(boid, boids);
       avoidOthers(boid, boids);
       matchVelocity(boid, boids);
@@ -175,7 +175,7 @@ const BoidsSimulation = () => {
 
     // Clear and redraw
     ctx.clearRect(0, 0, width, height);
-    for (let boid of boids) {
+    for (const boid of boids) {
       drawBoid(ctx, boid);
     }
 

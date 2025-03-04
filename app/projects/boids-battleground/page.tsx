@@ -1,30 +1,8 @@
 import { Metadata } from "next";
 import Image from "next/image";
-import {
-  Card,
-  CardContent,
-  CardHeader,
-  CardTitle,
-  CardDescription,
-} from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
-import { Project } from "../page";
 import BoidsSimulation from "./boids";
-
-export const projectDetails: Project = {
-  title: "Boids Battleground",
-  description: "A simulation of flocking behavior with competitive elements",
-  longDescription: `
-    Boids Battleground is an interactive simulation that demonstrates emergent behavior
-    through the implementation of Craig Reynolds' Boids algorithm. The project adds a
-    competitive element to the traditional flocking simulation, where different groups
-    of boids compete for resources while maintaining their flocking behavior.
-  `,
-  imageUrl: "/projects/boids-battleground.png", // Add your image to the public/projects folder
-  tags: ["TypeScript", "Canvas API", "Algorithm", "Simulation"],
-  githubUrl: "https://github.com/yourusername/boids-battleground",
-  liveUrl: "/projects/boids-battleground",
-};
+import { projectDetails } from "./project-details";
 
 export const metadata: Metadata = {
   title: projectDetails.title,

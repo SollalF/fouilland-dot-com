@@ -7,7 +7,7 @@ import {
   CardDescription,
 } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
-import { projectDetails as boidsBattleground } from "./boids-battleground/page";
+import { projectDetails as boidsBattleground } from "./boids-battleground/project-details";
 import Link from "next/link";
 
 export interface Project {
@@ -34,15 +34,13 @@ export default function Projects() {
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
         {projects.map((project, index) => (
           <Link
+            key={index}
             href={project.liveUrl || ""}
             target="_blank"
             rel="noopener noreferrer"
             className="text-white hover:text-green-300 transition-colors inline-block"
           >
-            <Card
-              key={index}
-              className="relative h-[400px] group overflow-hidden"
-            >
+            <Card className="relative h-[400px] group overflow-hidden">
               {/* Background Image */}
               <div className="absolute inset-0">
                 <Image
