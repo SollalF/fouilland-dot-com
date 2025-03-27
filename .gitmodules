@@ -1,0 +1,3 @@
+[submodule "app/projects/boids-battleground"]
+	path = app/projects/boids-battleground
+	url = https://github.com/SollalF/boids-battleground.git
