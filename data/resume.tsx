@@ -39,7 +39,6 @@ export const DATA = {
     label: item.title,
   })),
   contact: {
-    tel: "+85270742069",
     social: {
       GitHub: {
         name: "GitHub",
