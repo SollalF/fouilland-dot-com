@@ -7,25 +7,8 @@ import {
   CardDescription,
 } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
-import { projectDetails as boidsBattleground } from "./boids-battleground/project-details";
 import Link from "next/link";
-
-export interface Project {
-  title: string;
-  description: string;
-  longDescription: string;
-  imageUrl: string;
-  tags: string[];
-  githubUrl?: string;
-  liveUrl?: string;
-}
-
-// Import projects from their respective folders
-const projects: Project[] = [
-  boidsBattleground,
-  // Add more projects as you create them:
-  // projectDetails as projectName from "./project-name/page"
-];
+import { projects } from "./index";
 
 export default function Projects() {
   return (
