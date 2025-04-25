@@ -5,6 +5,7 @@ import { cn } from "@/lib/utils";
 import type { Metadata } from "next";
 import { Inter as FontSans } from "next/font/google";
 import "./globals.css";
+import "@coreui/icons/css/all.min.css";
 
 const fontSans = FontSans({
   subsets: ["latin"],
