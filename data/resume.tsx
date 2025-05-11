@@ -11,6 +11,7 @@ export const SKILL_CATEGORIES = {
   CLOUD: "Cloud",
   AI: "AI",
   DEVOPS: "DevOps",
+  OTHERS: "Others",
 } as const;
 
 // Define skill ratings explanation
