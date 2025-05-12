@@ -175,7 +175,7 @@ export const SKILLS_DATA: Record<string, Skill[]> = {
       icon: <i className="cib-python text-yellow-500" />,
     },
   ],
-  [SKILL_CATEGORIES.OTHER]: [
+  [SKILL_CATEGORIES.OTHERS]: [
     {
       name: "Jira",
       rating: 4,
