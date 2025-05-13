@@ -1,16 +1,15 @@
+"use client";
+
 import { HackathonCard } from "@/components/hackathon-card";
 import { BlurFade } from "@/components/magicui/blur-fade";
 import BlurFadeText from "@/components/magicui/blur-fade-text";
 import { ProjectCard } from "@/components/project-card";
 import { ResumeCard } from "@/components/resume-card";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
-import { Badge } from "@/components/ui/badge";
 import { DATA } from "@/data/resume";
 import Link from "next/link";
 import Markdown from "react-markdown";
 import { projects } from "@/app/projects";
-import { Icons } from "@/components/icons";
-import { GlobeIcon } from "lucide-react";
 import Navbar from "@/components/navbar";
 import { SkillsSection } from "@/components/skills-section";
 
@@ -143,33 +142,7 @@ export default function Page() {
                 key={project.title}
                 delay={BLUR_FADE_DELAY * 12 + id * 0.05}
               >
-                <ProjectCard
-                  href={project.liveUrl || ""}
-                  key={project.title}
-                  title={project.title}
-                  description={project.description}
-                  dates=""
-                  tags={project.tags}
-                  image={project.imageUrl}
-                  links={
-                    [
-                      project.githubUrl && {
-                        icon: <Icons.github className="h-3 w-3" />,
-                        type: "GitHub",
-                        href: project.githubUrl,
-                      },
-                      project.liveUrl && {
-                        icon: <GlobeIcon className="h-3 w-3" />,
-                        type: "Live Demo",
-                        href: project.liveUrl,
-                      },
-                    ].filter(Boolean) as {
-                      icon: React.ReactNode;
-                      type: string;
-                      href: string;
-                    }[]
-                  }
-                />
+                <ProjectCard project={project} />
               </BlurFade>
             ))}
           </div>
