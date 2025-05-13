@@ -23,15 +23,15 @@ export function SkillsSection({ delayStart = 0 }: SkillsSectionProps) {
       <BlurFade delay={delayStart + 0.05}>
         <div className="prose prose-lg prose-stone max-w-none text-stone-950 prose-p:leading-snug prose-ul:list-none prose-ul:p-0 prose-li:p-0 prose-li:leading-snug md:prose-xl dark:prose-invert dark:text-stone-50">
           <p>
-            Here's a list of my technical skills. As you can see, I specialize
-            in Web and AI technologies, but I've learned other tools and
-            techniques in various domains.
+            Here&apos;s a list of my technical skills. As you can see, I
+            specialize in Web and AI technologies, but I&apos;ve learned other
+            tools and techniques in various domains.
           </p>
           <p>
-            I'm aware rating skills on a scale of 1 to 5 is subjective and
-            skills are not really measurable that way, but since this isn't a CV
-            and long explanations don't make pretty layouts like this one,
-            here's the general idea of what each rating means (how I
+            I&apos;m aware rating skills on a scale of 1 to 5 is subjective and
+            skills are not really measurable that way, but since this isn&apos;t
+            a CV and long explanations don&apos;t make pretty layouts like this
+            one, here&apos;s the general idea of what each rating means (how I
             subjectively chose them!):
           </p>
           <ul>

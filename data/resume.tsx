@@ -18,26 +18,28 @@ export const SKILL_CATEGORIES = {
 export const SKILL_RATINGS_EXPLANATION = [
   {
     level: 1,
-    description: "I've tried it or haven't used it in at least 3 years.",
+    description:
+      "I&apos;ve tried it or haven&apos;t used it in at least 3 years.",
   },
   {
     level: 2,
-    description: "I've used it a little or haven't used it in at least a year.",
+    description:
+      "I&apos;ve used it a little or haven&apos;t used it in at least a year.",
   },
   {
     level: 3,
     description:
-      "I've got a good grasp of it and can make something decent with it.",
+      "I&apos;ve got a good grasp of it and can make something decent with it.",
   },
   {
     level: 4,
     description:
-      "I've used it multiple times and can get a project done with it by myself.",
+      "I&apos;ve used it multiple times and can get a project done with it by myself.",
   },
   {
     level: 5,
     description:
-      "I use this almost every day! They're usually my technologies of choice when creating my own projects.",
+      "I use this almost every day! They&apos;re usually my technologies of choice when creating my own projects.",
   },
 ];
 
