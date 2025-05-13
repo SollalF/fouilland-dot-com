@@ -1,3 +1,5 @@
+"use client";
+
 import Image from "next/image";
 import {
   Card,
@@ -15,15 +17,14 @@ export default function Projects() {
     <main className="container mx-auto px-4 py-8">
       <h1 className="text-4xl font-bold mb-8">My Projects</h1>
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-        {projects.map((project, index) => (
-          <Link
-            key={index}
-            href={project.liveUrl || ""}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="text-white hover:text-green-300 transition-colors inline-block"
-          >
-            <Card className="relative h-[400px] group overflow-hidden">
+        {projects.map((project, index) => {
+          const projectDetailsUrl = `/projects/${project.projectSlug}`;
+
+          return (
+            <Card
+              key={index}
+              className="relative h-[400px] group overflow-hidden cursor-pointer"
+            >
               {/* Background Image */}
               <div className="absolute inset-0">
                 <Image
@@ -70,6 +71,12 @@ export default function Projects() {
                         View Source →
                       </Link>
                     )}
+                    <Link
+                      href={projectDetailsUrl}
+                      className="text-white hover:text-yellow-300 transition-colors inline-block"
+                    >
+                      View Details →
+                    </Link>
                     {project.liveUrl && (
                       <Link
                         href={project.liveUrl}
@@ -83,9 +90,26 @@ export default function Projects() {
                   </div>
                 </CardContent>
               </div>
+
+              {/* Make the entire card clickable for details */}
+              <Link
+                href={projectDetailsUrl}
+                className="absolute inset-0 z-10 cursor-pointer"
+                aria-label={`View details for ${project.title}`}
+                onClick={(e) => {
+                  // Stop propagation if any of the specific links are clicked
+                  if (
+                    e.target instanceof HTMLElement &&
+                    (e.target.tagName === "A" || e.target.closest("a"))
+                  )
+                    e.stopPropagation();
+                }}
+              >
+                <span className="sr-only">View project details</span>
+              </Link>
             </Card>
-          </Link>
-        ))}
+          );
+        })}
       </div>
     </main>
   );
