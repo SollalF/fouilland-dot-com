@@ -1,0 +1,9 @@
+---
+description: 
+globs: *.ts,*.tsx
+alwaysApply: false
+---
+- Icons in react are in order of priority:
+    1. From lucide-react
+    2. If not availiable, from coreui
+    3. If not availiable, SVG defined in [icons.tsx](mdc:components/icons.tsx)
