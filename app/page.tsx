@@ -32,7 +32,7 @@ const hackathons: Hackathon[] = [];
 
 export default function Page() {
   return (
-    <main className="flex flex-col min-h-[100dvh] space-y-10 min-h-screen bg-background font-sans antialiased max-w-2xl mx-auto py-12 sm:py-24 px-6">
+    <main className="flex flex-col min-h-[100dvh] space-y-10 bg-background font-sans antialiased max-w-2xl mx-auto py-12 sm:py-24 px-6">
       <section id="hero">
         <div className="mx-auto w-full max-w-2xl space-y-8">
           <div className="gap-2 flex justify-between">
