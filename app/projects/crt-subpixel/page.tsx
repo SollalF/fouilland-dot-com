@@ -53,12 +53,10 @@ export default function CrtSubpixelPage() {
                 className="object-cover rounded-lg"
               />
             ) : (
-              <div className="w-full h-full bg-gradient-to-br from-zinc-800 to-zinc-900 rounded-lg flex items-center justify-center">
+              <div className="w-full h-full rounded-lg flex items-center justify-center">
                 <div className="text-center">
-                  <Monitor className="w-24 h-24 text-emerald-500/50 mx-auto mb-4" />
-                  <p className="text-zinc-500 text-sm">
-                    Project image coming soon
-                  </p>
+                  <Monitor className="w-24 h-24 mx-auto mb-4" />
+                  <p className="text-sm">Project image coming soon</p>
                 </div>
               </div>
             )}
@@ -70,7 +68,7 @@ export default function CrtSubpixelPage() {
                 href="https://www.reddit.com/user/vSv_Entertainment/"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="text-blue-400 hover:underline inline-flex items-center gap-1"
+                className="hover:underline inline-flex items-center gap-1"
               >
                 vSv_Entertainment <ExternalLink className="w-3 h-3" />
               </a>
@@ -104,7 +102,7 @@ export default function CrtSubpixelPage() {
               href={projectDetails.githubUrl}
               target="_blank"
               rel="noopener noreferrer"
-              className="text-blue-500 hover:text-blue-700 inline-block"
+              className="hover:underline inline-block"
             >
               View Source →
             </a>
@@ -113,7 +111,7 @@ export default function CrtSubpixelPage() {
       </div>
 
       {/* CRT Demo Container */}
-      <div className="w-full min-h-[700px] mt-12 border border-zinc-700 rounded-lg overflow-hidden bg-zinc-900/50 p-4">
+      <div className="w-full min-h-[700px] mt-12 border rounded-lg overflow-hidden p-4">
         <CrtDemoWrapper />
       </div>
 
@@ -138,7 +136,7 @@ export default function CrtSubpixelPage() {
           </p>
 
           <div className="my-8 not-prose flex flex-col items-center">
-            <VideoPlayer className="overflow-hidden rounded-lg border border-zinc-700 w-full max-w-4xl">
+            <VideoPlayer className="overflow-hidden rounded-lg border w-full max-w-4xl">
               <VideoPlayerContent
                 crossOrigin=""
                 muted
@@ -164,7 +162,7 @@ export default function CrtSubpixelPage() {
                 href="https://www.reddit.com/user/Alex_DiP/"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="text-blue-400 hover:underline inline-flex items-center gap-1"
+                className="hover:underline inline-flex items-center gap-1"
               >
                 View on Reddit <ExternalLink className="w-3 h-3" />
               </a>
@@ -196,7 +194,7 @@ export default function CrtSubpixelPage() {
           </p>
 
           <div className="my-8 not-prose flex flex-col items-center">
-            <div className="w-full relative rounded-lg overflow-hidden border border-zinc-700">
+            <div className="w-full relative rounded-lg overflow-hidden border">
               <Image
                 src="/projects/crt-subpixel/human-eye-color-sensitivity.jpg"
                 alt="Human eye cone receptors diagram"
@@ -211,7 +209,7 @@ export default function CrtSubpixelPage() {
                 href="https://chromatone.center/theory/color/perception/"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="text-blue-400 hover:underline inline-flex items-center gap-1"
+                className="hover:underline inline-flex items-center gap-1"
               >
                 Source <ExternalLink className="w-3 h-3" />
               </a>
@@ -243,7 +241,7 @@ export default function CrtSubpixelPage() {
           </p>
 
           <div className="my-8 not-prose flex flex-col items-center">
-            <div className="w-full relative rounded-lg overflow-hidden border border-zinc-700">
+            <div className="w-full relative rounded-lg overflow-hidden border">
               <Image
                 src="/projects/crt-subpixel/rgb-color-illusion.png"
                 alt="RGB color illusion demonstrating how the brain interpolates colors"
@@ -259,7 +257,7 @@ export default function CrtSubpixelPage() {
                 href="https://www.psy.ritsumei.ac.jp/akitaoka/color19e.html"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="text-blue-400 hover:underline inline-flex items-center gap-1"
+                className="hover:underline inline-flex items-center gap-1"
               >
                 Source <ExternalLink className="w-3 h-3" />
               </a>
@@ -326,7 +324,7 @@ export default function CrtSubpixelPage() {
           </p>
 
           <div className="my-8 not-prose flex flex-col items-center">
-            <div className="w-full relative rounded-lg overflow-hidden border border-zinc-700">
+            <div className="w-full relative rounded-lg overflow-hidden border">
               <Image
                 src="/projects/crt-subpixel/crt-lcd-comparison.png"
                 alt="CRT vs LCD comparison showing how games looked on CRT displays"
@@ -342,7 +340,7 @@ export default function CrtSubpixelPage() {
                 href="https://www.reddit.com/r/gaming/comments/q3vw1q/left_side_is_what_it_looked_like_on_a_crt_tv_no/"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="text-blue-400 hover:underline inline-flex items-center gap-1"
+                className="hover:underline inline-flex items-center gap-1"
               >
                 Source <ExternalLink className="w-3 h-3" />
               </a>
@@ -374,7 +372,7 @@ export default function CrtSubpixelPage() {
           </p>
 
           <div className="my-8 not-prose flex flex-col items-center">
-            <div className="w-full relative rounded-lg overflow-hidden border border-zinc-700">
+            <div className="w-full relative rounded-lg overflow-hidden border">
               <Image
                 src="/projects/crt-subpixel/rgb-pixel-decomposition.png"
                 alt="Illustration showing pixel to 3×3 subpixel grid transformation"
@@ -432,7 +430,7 @@ export default function CrtSubpixelPage() {
               src="https://cdn.jsdelivr.net/gh/ireade/caniuse-embed/public/caniuse-embed.min.js"
               strategy="lazyOnload"
             />
-            <div className="w-full rounded-lg overflow-hidden border border-zinc-700 bg-zinc-900/50">
+            <div className="w-full rounded-lg overflow-hidden border">
               <p
                 className="ciu_embed m-0 p-0"
                 data-feature="webgpu"
@@ -462,7 +460,7 @@ export default function CrtSubpixelPage() {
                 href="https://caniuse.com/webgpu"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="text-blue-400 hover:underline inline-flex items-center gap-1"
+                className="hover:underline inline-flex items-center gap-1"
               >
                 View on caniuse.com <ExternalLink className="w-3 h-3" />
               </a>
@@ -544,7 +542,7 @@ export default function CrtSubpixelPage() {
           </p>
 
           <div className="my-8 not-prose flex flex-col items-center">
-            <div className="w-full relative rounded-lg overflow-hidden border border-zinc-700">
+            <div className="w-full relative rounded-lg overflow-hidden border">
               <Image
                 src="/projects/crt-subpixel/crt-slowmo.gif"
                 alt="Slow-motion CRT rendering showing pixels being drawn from left to right, top to bottom"
@@ -560,7 +558,7 @@ export default function CrtSubpixelPage() {
                 href="https://imgur.com/gallery/how-tv-works-slow-motion-5sYsb"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="text-blue-400 hover:underline inline-flex items-center gap-1"
+                className="hover:underline inline-flex items-center gap-1"
               >
                 Source <ExternalLink className="w-3 h-3" />
               </a>
@@ -596,7 +594,7 @@ export default function CrtSubpixelPage() {
           </p>
 
           <div className="my-8 not-prose">
-            <div className="w-full rounded-lg overflow-hidden border border-zinc-700 bg-zinc-900/50">
+            <div className="w-full rounded-lg overflow-hidden border">
               <Comparison className="aspect-video">
                 <ComparisonItem position="left">
                   <Image
@@ -625,7 +623,7 @@ export default function CrtSubpixelPage() {
                 href="https://fr.pinterest.com/pin/3166662233351865/"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="text-blue-400 hover:underline inline-flex items-center gap-1"
+                className="hover:underline inline-flex items-center gap-1"
               >
                 Source <ExternalLink className="w-3 h-3" />
               </a>
@@ -640,10 +638,10 @@ export default function CrtSubpixelPage() {
           </p>
 
           <div className="my-8 not-prose">
-            <div className="w-full rounded-lg overflow-hidden border border-zinc-700 bg-zinc-900/50">
+            <div className="w-full rounded-lg overflow-hidden border">
               <div className="grid grid-cols-1 md:grid-cols-3 gap-4 p-4">
                 <div className="flex flex-col">
-                  <div className="relative w-full aspect-square rounded-lg overflow-hidden border border-zinc-600">
+                  <div className="relative w-full aspect-square rounded-lg overflow-hidden border">
                     <Image
                       src="/projects/crt-subpixel/megaman-pixel-art.jpg"
                       alt="Original intentional pixel art of Mega Man"
@@ -657,7 +655,7 @@ export default function CrtSubpixelPage() {
                   </p>
                 </div>
                 <div className="flex flex-col">
-                  <div className="relative w-full aspect-square rounded-lg overflow-hidden border border-zinc-600">
+                  <div className="relative w-full aspect-square rounded-lg overflow-hidden border">
                     <Image
                       src="/projects/crt-subpixel/megaman-illustration.png"
                       alt="High resolution AI-generated illustration of Mega Man"
@@ -671,7 +669,7 @@ export default function CrtSubpixelPage() {
                   </p>
                 </div>
                 <div className="flex flex-col">
-                  <div className="relative w-full aspect-square rounded-lg overflow-hidden border border-zinc-600">
+                  <div className="relative w-full aspect-square rounded-lg overflow-hidden border">
                     <Image
                       src="/projects/crt-subpixel/megaman-downsampled.png"
                       alt="Downsampled version of the illustration showing loss of detail"
@@ -706,7 +704,7 @@ export default function CrtSubpixelPage() {
           </p>
 
           <div className="my-8 not-prose flex flex-col items-center">
-            <div className="w-full relative rounded-lg overflow-hidden border border-zinc-700">
+            <div className="w-full relative rounded-lg overflow-hidden border">
               <Image
                 src="/projects/crt-subpixel/intarlicing-vs-progressive.gif"
                 alt="Illustration showing interlaced vs. progressive rendering"
@@ -722,7 +720,7 @@ export default function CrtSubpixelPage() {
                 href="https://commons.wikimedia.org/wiki/File:Interlace.gif"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="text-blue-400 hover:underline inline-flex items-center gap-1"
+                className="hover:underline inline-flex items-center gap-1"
               >
                 Source <ExternalLink className="w-3 h-3" />
               </a>
@@ -822,11 +820,11 @@ export default function CrtSubpixelPage() {
         <section>
           <h2>Usage</h2>
           <p>Install the package from GitHub:</p>
-          <pre className="bg-zinc-900 p-4 rounded-lg overflow-x-auto">
+          <pre className="p-4 rounded-lg overflow-x-auto">
             <code>pnpm add github:SollalF/crt-subpixel</code>
           </pre>
           <p>Then use it in your project:</p>
-          <pre className="bg-zinc-900 p-4 rounded-lg overflow-x-auto">
+          <pre className="p-4 rounded-lg overflow-x-auto">
             <code>{`import { CrtSubpixelProcessor } from 'crt-subpixel';
 
 const processor = new CrtSubpixelProcessor();

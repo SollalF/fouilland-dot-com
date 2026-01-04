@@ -7,8 +7,8 @@ import dynamic from "next/dynamic";
 const CrtDemo = dynamic(() => import("./crt-demo"), {
   ssr: false,
   loading: () => (
-    <div className="w-full h-full flex items-center justify-center bg-zinc-900/50 rounded-lg">
-      <span className="text-zinc-400 animate-pulse">Loading demo...</span>
+    <div className="w-full h-full flex items-center justify-center rounded-lg">
+      <span className="animate-pulse">Loading demo...</span>
     </div>
   ),
 });

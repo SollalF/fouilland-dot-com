@@ -249,20 +249,18 @@ export default function CrtDemo() {
 
   if (isLoading) {
     return (
-      <div className="flex items-center justify-center h-full bg-zinc-900/50 rounded-lg">
-        <div className="text-zinc-400 animate-pulse">
-          Initializing WebGPU...
-        </div>
+      <div className="flex items-center justify-center h-full rounded-lg">
+        <div className="animate-pulse">Initializing WebGPU...</div>
       </div>
     );
   }
 
   if (error) {
     return (
-      <div className="flex items-center justify-center h-full bg-zinc-900/50 rounded-lg p-6">
+      <div className="flex items-center justify-center h-full rounded-lg p-6">
         <div className="text-center">
-          <p className="text-red-400 mb-2">Error</p>
-          <p className="text-zinc-500 text-sm">{error}</p>
+          <p className="mb-2">Error</p>
+          <p className="text-sm">{error}</p>
         </div>
       </div>
     );
@@ -272,18 +270,12 @@ export default function CrtDemo() {
     <div className="flex flex-col gap-4 h-full">
       {/* Mode Tabs */}
       <Tabs value={mode} onValueChange={handleModeChange} className="w-full">
-        <TabsList className="grid w-full grid-cols-2 bg-zinc-800/50">
-          <TabsTrigger
-            value="image"
-            className="data-[state=active]:bg-zinc-700"
-          >
+        <TabsList className="grid w-full grid-cols-2">
+          <TabsTrigger value="image">
             <ImageIcon className="w-4 h-4 mr-2" />
             Image
           </TabsTrigger>
-          <TabsTrigger
-            value="camera"
-            className="data-[state=active]:bg-zinc-700"
-          >
+          <TabsTrigger value="camera">
             <Camera className="w-4 h-4 mr-2" />
             Camera
           </TabsTrigger>
@@ -301,17 +293,13 @@ export default function CrtDemo() {
             <Button
               onClick={() => fileInputRef.current?.click()}
               variant="outline"
-              className="flex-1 border-zinc-700 hover:bg-zinc-800"
+              className="flex-1"
             >
               <Upload className="w-4 h-4 mr-2" />
               Upload Image
             </Button>
             {hasImage && (
-              <Button
-                onClick={handleDownload}
-                variant="outline"
-                className="border-zinc-700 hover:bg-zinc-800"
-              >
+              <Button onClick={handleDownload} variant="outline">
                 <Download className="w-4 h-4 mr-2" />
                 Download
               </Button>
@@ -325,7 +313,7 @@ export default function CrtDemo() {
               <Button
                 onClick={startCamera}
                 variant="outline"
-                className="flex-1 border-zinc-700 hover:bg-zinc-800"
+                className="flex-1"
               >
                 <Camera className="w-4 h-4 mr-2" />
                 Start Camera
@@ -335,16 +323,12 @@ export default function CrtDemo() {
                 <Button
                   onClick={stopCamera}
                   variant="outline"
-                  className="flex-1 border-red-700 hover:bg-red-900/30 text-red-400"
+                  className="flex-1"
                 >
                   <CameraOff className="w-4 h-4 mr-2" />
                   Stop Camera
                 </Button>
-                <Button
-                  onClick={handleDownload}
-                  variant="outline"
-                  className="border-zinc-700 hover:bg-zinc-800"
-                >
+                <Button onClick={handleDownload} variant="outline">
                   <Download className="w-4 h-4 mr-2" />
                   Capture
                 </Button>
@@ -364,7 +348,7 @@ export default function CrtDemo() {
           }}
         />
         {!hasImage && !isCameraRunning && (
-          <div className="text-zinc-600 text-center p-8">
+          <div className="text-center p-8">
             {mode === "image" ? (
               <div className="flex flex-col items-center gap-2">
                 <ImageIcon className="w-12 h-12 opacity-50" />
@@ -381,22 +365,17 @@ export default function CrtDemo() {
       </div>
 
       {/* Settings */}
-      <div className="bg-zinc-800/30 rounded-lg p-4 space-y-4">
-        <h3 className="text-sm font-medium text-zinc-300">Settings</h3>
+      <div className="rounded-lg p-4 space-y-4">
+        <h3 className="text-sm font-medium">Settings</h3>
 
         {/* Orientation */}
         <div className="flex items-center justify-between">
-          <Label className="text-zinc-400 text-sm">Orientation</Label>
+          <Label className="text-sm">Orientation</Label>
           <div className="flex gap-1">
             <Button
               variant={orientation === "columns" ? "default" : "outline"}
               size="sm"
               onClick={() => setOrientation("columns")}
-              className={
-                orientation === "columns"
-                  ? "bg-emerald-600 hover:bg-emerald-700"
-                  : "border-zinc-700 hover:bg-zinc-800"
-              }
             >
               <Columns3 className="w-4 h-4 mr-1" />
               Columns
@@ -405,11 +384,6 @@ export default function CrtDemo() {
               variant={orientation === "rows" ? "default" : "outline"}
               size="sm"
               onClick={() => setOrientation("rows")}
-              className={
-                orientation === "rows"
-                  ? "bg-emerald-600 hover:bg-emerald-700"
-                  : "border-zinc-700 hover:bg-zinc-800"
-              }
             >
               <Rows3 className="w-4 h-4 mr-1" />
               Rows
@@ -420,9 +394,7 @@ export default function CrtDemo() {
         {/* Pixel Density */}
         <div className="space-y-2">
           <div className="flex items-center justify-between">
-            <Label className="text-zinc-400 text-sm">
-              Pixel Density: {pixelDensity}x
-            </Label>
+            <Label className="text-sm">Pixel Density: {pixelDensity}x</Label>
           </div>
           <Slider
             value={[pixelDensity]}
@@ -436,7 +408,7 @@ export default function CrtDemo() {
 
         {/* Interlaced */}
         <div className="flex items-center justify-between">
-          <Label className="text-zinc-400 text-sm">Interlaced</Label>
+          <Label className="text-sm">Interlaced</Label>
           <Switch checked={interlaced} onCheckedChange={setInterlaced} />
         </div>
       </div>
