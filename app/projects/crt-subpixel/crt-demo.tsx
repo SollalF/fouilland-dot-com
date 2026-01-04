@@ -71,6 +71,40 @@ export default function CrtDemo() {
     };
   }, []);
 
+  // Preload default image
+  useEffect(() => {
+    const loadDefaultImage = async () => {
+      if (!processorRef.current || !canvasRef.current || !isInitialized) return;
+
+      try {
+        const response = await fetch("/projects/crt-subpixel/crows.png");
+        const blob = await response.blob();
+        const bitmap = await createImageBitmap(blob);
+        setCurrentImage(bitmap);
+        setHasImage(true);
+
+        // Calculate pixel density for 480p
+        const renderer = new SubpixelRenderer();
+        const dimensions = new Dimensions(bitmap.width, bitmap.height);
+        const densityFor480p = renderer.calculatePixelDensityForTargetHeight(
+          dimensions,
+          480,
+        );
+
+        // Set pixel density on processor and state
+        processorRef.current.setPixelDensity(densityFor480p);
+        setPixelDensity(densityFor480p);
+
+        await processorRef.current.renderImage(canvasRef.current, bitmap);
+      } catch (err) {
+        // Silently fail if image can't be loaded - user can still upload their own
+        console.warn("Failed to preload default image:", err);
+      }
+    };
+
+    loadDefaultImage();
+  }, [isInitialized]);
+
   // Apply settings when they change
   useEffect(() => {
     if (!processorRef.current || !isInitialized) return;
