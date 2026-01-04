@@ -1,5 +1,6 @@
 import { Metadata } from "next";
 import Image from "next/image";
+import Script from "next/script";
 import { Badge } from "@/components/ui/badge";
 import { projectDetails } from "./project-details";
 import CrtDemoWrapper from "./crt-demo-wrapper";
@@ -18,6 +19,11 @@ import {
   VideoPlayerMuteButton,
   VideoPlayerVolumeRange,
 } from "@/components/ui/shadcn-io/video-player";
+import {
+  Comparison,
+  ComparisonItem,
+  ComparisonHandle,
+} from "@/components/ui/shadcn-io/comparison";
 
 export const metadata: Metadata = {
   title: projectDetails.title,
@@ -37,23 +43,38 @@ export default function CrtSubpixelPage() {
         </h1>
 
         {/* Image Section */}
-        <div className="w-full relative h-[400px]">
-          {imageExists ? (
-            <Image
-              src={projectDetails.imageUrl}
-              alt={projectDetails.title}
-              fill
-              className="object-cover rounded-lg"
-            />
-          ) : (
-            <div className="w-full h-full bg-gradient-to-br from-zinc-800 to-zinc-900 rounded-lg flex items-center justify-center">
-              <div className="text-center">
-                <Monitor className="w-24 h-24 text-emerald-500/50 mx-auto mb-4" />
-                <p className="text-zinc-500 text-sm">
-                  Project image coming soon
-                </p>
+        <div className="w-full">
+          <div className="w-full relative h-[400px]">
+            {imageExists ? (
+              <Image
+                src={projectDetails.imageUrl}
+                alt={projectDetails.title}
+                fill
+                className="object-cover rounded-lg"
+              />
+            ) : (
+              <div className="w-full h-full bg-gradient-to-br from-zinc-800 to-zinc-900 rounded-lg flex items-center justify-center">
+                <div className="text-center">
+                  <Monitor className="w-24 h-24 text-emerald-500/50 mx-auto mb-4" />
+                  <p className="text-zinc-500 text-sm">
+                    Project image coming soon
+                  </p>
+                </div>
               </div>
-            </div>
+            )}
+          </div>
+          {imageExists && (
+            <p className="text-center text-sm text-muted-foreground mt-2">
+              Pixel art by{" "}
+              <a
+                href="https://www.reddit.com/user/vSv_Entertainment/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-blue-400 hover:underline inline-flex items-center gap-1"
+              >
+                vSv_Entertainment <ExternalLink className="w-3 h-3" />
+              </a>
+            </p>
           )}
         </div>
 
@@ -174,10 +195,27 @@ export default function CrtSubpixelPage() {
             and blue—due to our cone receptors in our eyeballs.
           </p>
 
-          {/* TODO: Add cone receptors diagram */}
-          <div className="my-8 p-8 border border-dashed border-zinc-600 rounded-lg bg-zinc-800/30 text-center text-zinc-500 not-prose">
-            <ImageIcon className="w-12 h-12 mx-auto mb-2 opacity-50" />
-            <p>Image: Human eye cone receptors diagram</p>
+          <div className="my-8 not-prose flex flex-col items-center">
+            <div className="w-full relative rounded-lg overflow-hidden border border-zinc-700">
+              <Image
+                src="/projects/crt-subpixel/human-eye-color-sensitivity.jpg"
+                alt="Human eye cone receptors diagram"
+                width={800}
+                height={600}
+                className="w-full h-auto"
+              />
+            </div>
+            <p className="text-center text-sm text-muted-foreground mt-2">
+              Image: Human eye cone receptors diagram{" "}
+              <a
+                href="https://chromatone.center/theory/color/perception/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-blue-400 hover:underline inline-flex items-center gap-1"
+              >
+                Source <ExternalLink className="w-3 h-3" />
+              </a>
+            </p>
           </div>
 
           <p>
@@ -190,10 +228,43 @@ export default function CrtSubpixelPage() {
           <p>
             This allows us to do a very cool trick when showing images on
             screen: instead of worrying about having LEDs for all the
-            frequencies of visible light, we can just have red, green, and blue
-            lights. If they are far enough apart or small enough, we can trick
-            our brain into seeing colors that are not there.
+            frequencies of visible light, we can just have red, green, and{" "}
+            <a
+              href="https://www.youtube.com/watch?v=AF8d72mA41M"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-blue-400 hover:underline inline-flex items-center gap-1"
+            >
+              blue lights
+              <ExternalLink className="w-3 h-3" />
+            </a>
+            . If they are far enough apart or small enough, we can trick our
+            brain into seeing colors that are not there.
           </p>
+
+          <div className="my-8 not-prose flex flex-col items-center">
+            <div className="w-full relative rounded-lg overflow-hidden border border-zinc-700">
+              <Image
+                src="/projects/crt-subpixel/rgb-color-illusion.png"
+                alt="RGB color illusion demonstrating how the brain interpolates colors"
+                width={900}
+                height={800}
+                className="w-full h-auto"
+                unoptimized
+              />
+            </div>
+            <p className="text-center text-sm text-muted-foreground mt-2">
+              Image: RGB color illusion{" "}
+              <a
+                href="https://www.psy.ritsumei.ac.jp/akitaoka/color19e.html"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-blue-400 hover:underline inline-flex items-center gap-1"
+              >
+                Source <ExternalLink className="w-3 h-3" />
+              </a>
+            </p>
+          </div>
         </section>
 
         {/* CRT Display Technology */}
@@ -219,24 +290,19 @@ export default function CrtSubpixelPage() {
           </ul>
           <p>
             I&apos;ll be going into a bit more detail on each of the artifacts
-            that I implemented in the shader, but you can check this video for a
-            more in-depth explanation of these limitations/artifacts and
-            where/why they exist:
-          </p>
-
-          {/* TODO: Embed YouTube video */}
-          <div className="my-8 p-8 border border-dashed border-zinc-600 rounded-lg bg-zinc-800/30 text-center text-zinc-500 not-prose">
-            <Video className="w-12 h-12 mx-auto mb-2 opacity-50" />
-            <p>Video: CRT artifacts explained</p>
+            that I implemented in the shader, but you can check{" "}
             <a
               href="https://www.youtube.com/watch?v=2sxKJeYSBmI"
               target="_blank"
               rel="noopener noreferrer"
-              className="text-blue-400 hover:underline text-sm inline-flex items-center gap-1"
+              className="text-blue-400 hover:underline inline-flex items-center gap-1"
             >
-              Watch on YouTube <ExternalLink className="w-3 h-3" />
-            </a>
-          </div>
+              this video
+              <ExternalLink className="w-3 h-3" />
+            </a>{" "}
+            for a more in-depth explanation of these limitations/artifacts and
+            where/why they exist:
+          </p>
         </section>
 
         {/* Why Retro Games Need CRT */}
@@ -246,22 +312,41 @@ export default function CrtSubpixelPage() {
             For a lot of older games, enthusiasts will rely on shaders or actual
             CRT displays, as the games were intended to be played on such
             displays and were designed using tricks that made use of those
-            &quot;limitations.&quot; As a result, many older games look better
-            on these older displays.
-          </p>
-
-          {/* TODO: Embed YouTube video */}
-          <div className="my-8 p-8 border border-dashed border-zinc-600 rounded-lg bg-zinc-800/30 text-center text-zinc-500 not-prose">
-            <Video className="w-12 h-12 mx-auto mb-2 opacity-50" />
-            <p>Video: Retro games on CRT vs modern displays</p>
+            &quot;limitations.&quot; As a result, many{" "}
             <a
               href="https://www.youtube.com/watch?v=28u6RoYiCWI"
               target="_blank"
               rel="noopener noreferrer"
-              className="text-blue-400 hover:underline text-sm inline-flex items-center gap-1"
+              className="text-blue-400 hover:underline inline-flex items-center gap-1"
             >
-              Watch on YouTube <ExternalLink className="w-3 h-3" />
+              older games look better on these older displays
+              <ExternalLink className="w-3 h-3" />
             </a>
+            .
+          </p>
+
+          <div className="my-8 not-prose flex flex-col items-center">
+            <div className="w-full relative rounded-lg overflow-hidden border border-zinc-700">
+              <Image
+                src="/projects/crt-subpixel/crt-lcd-comparison.png"
+                alt="CRT vs LCD comparison showing how games looked on CRT displays"
+                width={806}
+                height={473}
+                className="w-full h-auto"
+                unoptimized
+              />
+            </div>
+            <p className="text-center text-sm text-muted-foreground mt-2">
+              Image: CRT vs LCD comparison{" "}
+              <a
+                href="https://www.reddit.com/r/gaming/comments/q3vw1q/left_side_is_what_it_looked_like_on_a_crt_tv_no/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-blue-400 hover:underline inline-flex items-center gap-1"
+              >
+                Source <ExternalLink className="w-3 h-3" />
+              </a>
+            </p>
           </div>
         </section>
 
@@ -288,10 +373,21 @@ export default function CrtSubpixelPage() {
             channels.
           </p>
 
-          {/* TODO: Add illustration of pixel splitting */}
-          <div className="my-8 p-8 border border-dashed border-zinc-600 rounded-lg bg-zinc-800/30 text-center text-zinc-500 not-prose">
-            <ImageIcon className="w-12 h-12 mx-auto mb-2 opacity-50" />
-            <p>Illustration: Pixel to 3×3 subpixel grid transformation</p>
+          <div className="my-8 not-prose flex flex-col items-center">
+            <div className="w-full relative rounded-lg overflow-hidden border border-zinc-700">
+              <Image
+                src="/projects/crt-subpixel/rgb-pixel-decomposition.png"
+                alt="Illustration showing pixel to 3×3 subpixel grid transformation"
+                width={2752}
+                height={1536}
+                className="w-full h-auto"
+                unoptimized
+              />
+            </div>
+            <p className="text-center text-sm text-muted-foreground mt-2">
+              Illustration: Pixel to 3×3 subpixel grid transformation (generated
+              with nano banana pro)
+            </p>
           </div>
 
           <p>
@@ -299,12 +395,6 @@ export default function CrtSubpixelPage() {
             already, so it was a matter of accessing the raw data of a pixel and
             adding a bunch of zeros.
           </p>
-
-          {/* TODO: Add illustration of RGB data transformation */}
-          <div className="my-8 p-8 border border-dashed border-zinc-600 rounded-lg bg-zinc-800/30 text-center text-zinc-500 not-prose">
-            <ImageIcon className="w-12 h-12 mx-auto mb-2 opacity-50" />
-            <p>Illustration: RGB data with zeroed channels</p>
-          </div>
 
           <p>
             The main issue with this approach is that it is slow—everything is
@@ -337,27 +427,61 @@ export default function CrtSubpixelPage() {
             Metal, WebGL) depending on the browser.
           </p>
 
-          {/* TODO: Add browser compatibility chart */}
-          <div className="my-8 p-8 border border-dashed border-zinc-600 rounded-lg bg-zinc-800/30 text-center text-zinc-500 not-prose">
-            <ImageIcon className="w-12 h-12 mx-auto mb-2 opacity-50" />
-            <p>Chart: GPU API browser compatibility</p>
+          <div className="my-8 not-prose">
+            <Script
+              src="https://cdn.jsdelivr.net/gh/ireade/caniuse-embed/public/caniuse-embed.min.js"
+              strategy="lazyOnload"
+            />
+            <div className="w-full rounded-lg overflow-hidden border border-zinc-700 bg-zinc-900/50">
+              <p
+                className="ciu_embed m-0 p-0"
+                data-feature="webgpu"
+                data-periods="future_1,current,past_1,past_2"
+                data-accessible-colours="false"
+              >
+                <picture className="block m-0 p-0">
+                  <source
+                    type="image/webp"
+                    srcSet="https://caniuse.bitsofco.de/image/webgpu.webp"
+                  />
+                  <source
+                    type="image/png"
+                    srcSet="https://caniuse.bitsofco.de/image/webgpu.png"
+                  />
+                  <img
+                    src="https://caniuse.bitsofco.de/image/webgpu.jpg"
+                    alt="Data on support for the webgpu feature across the major browsers from caniuse.com"
+                    className="block w-full h-auto m-0 p-0"
+                  />
+                </picture>
+              </p>
+            </div>
+            <p className="text-center text-sm text-muted-foreground mt-2">
+              Chart: WebGPU browser compatibility{" "}
+              <a
+                href="https://caniuse.com/webgpu"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-blue-400 hover:underline inline-flex items-center gap-1"
+              >
+                View on caniuse.com <ExternalLink className="w-3 h-3" />
+              </a>
+            </p>
           </div>
 
-          <p>You can learn more about graphics APIs here:</p>
-
-          {/* TODO: Embed YouTube video */}
-          <div className="my-8 p-8 border border-dashed border-zinc-600 rounded-lg bg-zinc-800/30 text-center text-zinc-500 not-prose">
-            <Video className="w-12 h-12 mx-auto mb-2 opacity-50" />
-            <p>Video: Graphics APIs explained</p>
+          <p>
+            You can learn more about graphics APIs{" "}
             <a
               href="https://www.youtube.com/watch?v=oIur9NATg-I"
               target="_blank"
               rel="noopener noreferrer"
-              className="text-blue-400 hover:underline text-sm inline-flex items-center gap-1"
+              className="text-blue-400 hover:underline inline-flex items-center gap-1"
             >
-              Watch on YouTube <ExternalLink className="w-3 h-3" />
+              here
+              <ExternalLink className="w-3 h-3" />
             </a>
-          </div>
+            .
+          </p>
 
           <p>
             The thing is, I really don&apos;t want to learn 3 different
@@ -419,10 +543,28 @@ export default function CrtSubpixelPage() {
             pixel at a time.
           </p>
 
-          {/* TODO: Add slow-mo video of CRT rendering */}
-          <div className="my-8 p-8 border border-dashed border-zinc-600 rounded-lg bg-zinc-800/30 text-center text-zinc-500 not-prose">
-            <Video className="w-12 h-12 mx-auto mb-2 opacity-50" />
-            <p>Video: Slow-motion CRT rendering</p>
+          <div className="my-8 not-prose flex flex-col items-center">
+            <div className="w-full relative rounded-lg overflow-hidden border border-zinc-700">
+              <Image
+                src="/projects/crt-subpixel/crt-slowmo.gif"
+                alt="Slow-motion CRT rendering showing pixels being drawn from left to right, top to bottom"
+                width={728}
+                height={408}
+                className="w-full h-auto"
+                unoptimized
+              />
+            </div>
+            <p className="text-center text-sm text-muted-foreground mt-2">
+              GIF: Slow-motion CRT rendering{" "}
+              <a
+                href="https://imgur.com/gallery/how-tv-works-slow-motion-5sYsb"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-blue-400 hover:underline inline-flex items-center gap-1"
+              >
+                Source <ExternalLink className="w-3 h-3" />
+              </a>
+            </p>
           </div>
 
           <p>
@@ -453,10 +595,41 @@ export default function CrtSubpixelPage() {
             need to access the value of one pixel from memory.
           </p>
 
-          {/* TODO: Add pixelation example */}
-          <div className="my-8 p-8 border border-dashed border-zinc-600 rounded-lg bg-zinc-800/30 text-center text-zinc-500 not-prose">
-            <ImageIcon className="w-12 h-12 mx-auto mb-2 opacity-50" />
-            <p>Example: Pixelation effect at different sampling rates</p>
+          <div className="my-8 not-prose">
+            <div className="w-full rounded-lg overflow-hidden border border-zinc-700 bg-zinc-900/50">
+              <Comparison className="aspect-video">
+                <ComparisonItem position="left">
+                  <Image
+                    src="/projects/crt-subpixel/test-image.jpg"
+                    alt="Original test image"
+                    fill
+                    className="object-cover"
+                    unoptimized
+                  />
+                </ComparisonItem>
+                <ComparisonItem position="right">
+                  <Image
+                    src="/projects/crt-subpixel/test-image-subsampled.png"
+                    alt="Subsampled test image showing pixelation effect"
+                    fill
+                    className="object-cover"
+                    unoptimized
+                  />
+                </ComparisonItem>
+                <ComparisonHandle />
+              </Comparison>
+            </div>
+            <p className="text-center text-sm text-muted-foreground mt-2">
+              Example: Pixelation effect at different sampling rates{" "}
+              <a
+                href="https://fr.pinterest.com/pin/3166662233351865/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-blue-400 hover:underline inline-flex items-center gap-1"
+              >
+                Source <ExternalLink className="w-3 h-3" />
+              </a>
+            </p>
           </div>
 
           <p>
@@ -466,11 +639,57 @@ export default function CrtSubpixelPage() {
             in order to maintain legibility at the cost of realism.
           </p>
 
-          {/* TODO: Add pixel art comparison */}
-          <div className="my-8 p-8 border border-dashed border-zinc-600 rounded-lg bg-zinc-800/30 text-center text-zinc-500 not-prose">
-            <ImageIcon className="w-12 h-12 mx-auto mb-2 opacity-50" />
-            <p>
-              Comparison: Intentional pixel art vs. downsampled realistic image
+          <div className="my-8 not-prose">
+            <div className="w-full rounded-lg overflow-hidden border border-zinc-700 bg-zinc-900/50">
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-4 p-4">
+                <div className="flex flex-col">
+                  <div className="relative w-full aspect-square rounded-lg overflow-hidden border border-zinc-600">
+                    <Image
+                      src="/projects/crt-subpixel/megaman-pixel-art.jpg"
+                      alt="Original intentional pixel art of Mega Man"
+                      fill
+                      className="object-cover"
+                      unoptimized
+                    />
+                  </div>
+                  <p className="text-center text-sm text-muted-foreground mt-2">
+                    Original pixel art
+                  </p>
+                </div>
+                <div className="flex flex-col">
+                  <div className="relative w-full aspect-square rounded-lg overflow-hidden border border-zinc-600">
+                    <Image
+                      src="/projects/crt-subpixel/megaman-illustration.png"
+                      alt="High resolution AI-generated illustration of Mega Man"
+                      fill
+                      className="object-cover"
+                      unoptimized
+                    />
+                  </div>
+                  <p className="text-center text-sm text-muted-foreground mt-2">
+                    High-res illustration
+                  </p>
+                </div>
+                <div className="flex flex-col">
+                  <div className="relative w-full aspect-square rounded-lg overflow-hidden border border-zinc-600">
+                    <Image
+                      src="/projects/crt-subpixel/megaman-downsampled.png"
+                      alt="Downsampled version of the illustration showing loss of detail"
+                      fill
+                      className="object-cover"
+                      unoptimized
+                    />
+                  </div>
+                  <p className="text-center text-sm text-muted-foreground mt-2">
+                    Downsampled illustration
+                  </p>
+                </div>
+              </div>
+            </div>
+            <p className="text-center text-sm text-muted-foreground mt-4">
+              Comparison: Intentional pixel art vs. downsampled realistic image.
+              This demonstrates how downsampling cannot replace pixel artists
+              and what detail and legibility is lost in the process.
             </p>
           </div>
 
@@ -486,10 +705,28 @@ export default function CrtSubpixelPage() {
             halves—the even rows and the odd rows alternating.
           </p>
 
-          {/* TODO: Add interlacing illustration */}
-          <div className="my-8 p-8 border border-dashed border-zinc-600 rounded-lg bg-zinc-800/30 text-center text-zinc-500 not-prose">
-            <ImageIcon className="w-12 h-12 mx-auto mb-2 opacity-50" />
-            <p>Illustration: Interlaced vs. progressive rendering</p>
+          <div className="my-8 not-prose flex flex-col items-center">
+            <div className="w-full relative rounded-lg overflow-hidden border border-zinc-700">
+              <Image
+                src="/projects/crt-subpixel/intarlicing-vs-progressive.gif"
+                alt="Illustration showing interlaced vs. progressive rendering"
+                width={400}
+                height={130}
+                className="w-full h-auto"
+                unoptimized
+              />
+            </div>
+            <p className="text-center text-sm text-muted-foreground mt-2">
+              Illustration: Interlaced vs. progressive rendering{" "}
+              <a
+                href="https://commons.wikimedia.org/wiki/File:Interlace.gif"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-blue-400 hover:underline inline-flex items-center gap-1"
+              >
+                Source <ExternalLink className="w-3 h-3" />
+              </a>
+            </p>
           </div>
 
           <p>
@@ -518,18 +755,19 @@ export default function CrtSubpixelPage() {
           </p>
           <p>
             TypeGPU does not expose all the functions that WebGPU does. Namely,{" "}
-            <code>copyExternalImageToTexture()</code> does not exist, and the
-            previous pipeline used{" "}
+            <code>copyExternalImageToTexture()</code> does not exist in TypeGPU.
+            The function I had been using,{" "}
+            <code>texture.write(imageBitmap)</code>, worked fine for static
+            images but could not work with the camera pipeline. I had to switch
+            to using WebGPU&apos;s{" "}
             <a
               href="https://developer.mozilla.org/en-US/docs/Web/API/GPUQueue/copyExternalImageToTexture"
               target="_blank"
               rel="noopener noreferrer"
             >
               GPUQueue.copyExternalImageToTexture()
-            </a>
-            . The function I had been using,{" "}
-            <code>texture.write(imageBitmap)</code>, could not work with the
-            camera pipeline.
+            </a>{" "}
+            directly, which required accessing the underlying WebGPU objects.
           </p>
           <p>
             This is at the moment the biggest limitation to TypeGPU I could see.
