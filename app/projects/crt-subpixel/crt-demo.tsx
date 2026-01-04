@@ -1,7 +1,11 @@
 "use client";
 
 import { useCallback, useEffect, useRef, useState } from "react";
-import { CrtSubpixelProcessor } from "crt-subpixel";
+import {
+  CrtSubpixelProcessor,
+  SubpixelRenderer,
+  Dimensions,
+} from "crt-subpixel";
 import { Button } from "@/components/ui/button";
 import { Slider } from "@/components/ui/slider";
 import { Switch } from "@/components/ui/switch";
@@ -98,6 +102,19 @@ export default function CrtDemo() {
         const bitmap = await createImageBitmap(file);
         setCurrentImage(bitmap);
         setHasImage(true);
+
+        // Calculate pixel density for 480p
+        const renderer = new SubpixelRenderer();
+        const dimensions = new Dimensions(bitmap.width, bitmap.height);
+        const densityFor480p = renderer.calculatePixelDensityForTargetHeight(
+          dimensions,
+          480,
+        );
+
+        // Set pixel density on processor and state
+        processorRef.current.setPixelDensity(densityFor480p);
+        setPixelDensity(densityFor480p);
+
         await processorRef.current.renderImage(canvasRef.current, bitmap);
       } catch (err) {
         setError(
@@ -115,6 +132,34 @@ export default function CrtDemo() {
     try {
       await processorRef.current.startCamera(canvasRef.current);
       setIsCameraRunning(true);
+
+      // Wait for video stream to initialize, then calculate pixel density for 480p
+      const tryGetDimensions = () => {
+        if (!processorRef.current) return;
+
+        const cameraDimensions = processorRef.current.getCameraDimensions();
+        if (cameraDimensions) {
+          const renderer = new SubpixelRenderer();
+          const dimensions = new Dimensions(
+            cameraDimensions.width,
+            cameraDimensions.height,
+          );
+          const densityFor480p = renderer.calculatePixelDensityForTargetHeight(
+            dimensions,
+            480,
+          );
+
+          // Set pixel density on processor and state
+          processorRef.current.setPixelDensity(densityFor480p);
+          setPixelDensity(densityFor480p);
+        } else {
+          // Retry after a short delay if dimensions aren't ready yet
+          setTimeout(tryGetDimensions, 100);
+        }
+      };
+
+      // Start trying to get dimensions
+      setTimeout(tryGetDimensions, 100);
     } catch (err) {
       setError(
         err instanceof Error
@@ -349,7 +394,7 @@ export default function CrtDemo() {
             value={[pixelDensity]}
             onValueChange={([value]) => setPixelDensity(value)}
             min={1}
-            max={8}
+            max={64}
             step={1}
             className="w-full"
           />

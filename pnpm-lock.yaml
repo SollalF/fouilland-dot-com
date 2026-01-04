@@ -76,7 +76,7 @@ importers:
         version: 2.1.1
       crt-subpixel:
         specifier: github:SollalF/crt-subpixel
-        version: https://codeload.github.com/SollalF/crt-subpixel/tar.gz/f152c1dee67b2743be37a0eb482a2bc2eb0a519a(@webgpu/types@0.1.68)
+        version: https://codeload.github.com/SollalF/crt-subpixel/tar.gz/7c8984b5b83adb843c1ca890cf66ace61e84a22a(@webgpu/types@0.1.68)
       framer-motion:
         specifier: ^12.6.2
         version: 12.6.2(react-dom@19.0.0(react@19.0.0))(react@19.0.0)
@@ -1627,8 +1627,8 @@ packages:
     resolution: {integrity: sha512-uV2QOWP2nWzsy2aMp8aRibhi9dlzF5Hgh5SHaB9OiTGEyDTiJJyx0uy51QXdyWbtAHNua4XJzUKca3OzKUd3vA==}
     engines: {node: '>= 8'}
 
-  crt-subpixel@https://codeload.github.com/SollalF/crt-subpixel/tar.gz/f152c1dee67b2743be37a0eb482a2bc2eb0a519a:
-    resolution: {tarball: https://codeload.github.com/SollalF/crt-subpixel/tar.gz/f152c1dee67b2743be37a0eb482a2bc2eb0a519a}
+  crt-subpixel@https://codeload.github.com/SollalF/crt-subpixel/tar.gz/7c8984b5b83adb843c1ca890cf66ace61e84a22a:
+    resolution: {tarball: https://codeload.github.com/SollalF/crt-subpixel/tar.gz/7c8984b5b83adb843c1ca890cf66ace61e84a22a}
     version: 1.0.0
     peerDependencies:
       '@webgpu/types': '>=0.1.0'
@@ -4901,7 +4901,7 @@ snapshots:
       shebang-command: 2.0.0
       which: 2.0.2
 
-  crt-subpixel@https://codeload.github.com/SollalF/crt-subpixel/tar.gz/f152c1dee67b2743be37a0eb482a2bc2eb0a519a(@webgpu/types@0.1.68):
+  crt-subpixel@https://codeload.github.com/SollalF/crt-subpixel/tar.gz/7c8984b5b83adb843c1ca890cf66ace61e84a22a(@webgpu/types@0.1.68):
     dependencies:
       tinyest: 0.1.2
       typed-binary: 4.3.2
