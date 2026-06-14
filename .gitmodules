@@ -1,6 +1,6 @@
 [submodule "app/projects/boids-battleground"]
 	path = app/projects/boids-battleground
 	url = https://github.com/SollalF/boids-battleground.git
-[submodule "app/projects/culture-map"]
-	path = app/projects/culture-map
-	url = https://github.com/SollalF/culture-map.git
+[submodule "app/projects/cultural-atlas"]
+	path = app/projects/cultural-atlas
+	url = https://github.com/SollalF/cultural-atlas.git
