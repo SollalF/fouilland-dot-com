@@ -82,8 +82,8 @@ export function ProjectCard({ project, className }: Props) {
               {tags.map((tag, tagIndex) => (
                 <Badge
                   key={tagIndex}
-                  variant="secondary"
-                  className="bg-white/10 hover:bg-white/20 text-[10px] px-1.5 py-0.5"
+                  variant="onDark"
+                  className="text-[10px] px-1.5 py-0.5"
                 >
                   {tag}
                 </Badge>
