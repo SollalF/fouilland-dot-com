@@ -77,7 +77,8 @@
     "prettier": "3.5.3",
     "prettier-eslint": "^16.3.0",
     "tailwindcss": "^4",
-    "typescript": "^5"
+    "typescript": "^5",
+    "xlsx": "^0.18.5"
   },
   "lint-staged": {
     "*.{js,jsx,ts,tsx,css,md,json}": [
