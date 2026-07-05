@@ -86,7 +86,7 @@ export default function CrtSubpixelPage() {
         </div>
 
         {/* Description Section */}
-        <div className="prose max-w-none">
+        <div className="prose-site">
           <p className="text-center text-lg text-muted-foreground">
             {projectDetails.description}
           </p>
@@ -116,7 +116,7 @@ export default function CrtSubpixelPage() {
       </div>
 
       {/* Article Content */}
-      <article className="prose prose-zinc max-w-none w-full py-12">
+      <article className="prose-site w-full py-12">
         {/* Introduction */}
         <section>
           <h2>The Inspiration</h2>

@@ -220,4 +220,21 @@
     border-width: var(--site-border-width);
     border-style: var(--site-border-style);
   }
+
+  .prose-site {
+    @apply prose max-w-none text-foreground;
+    @apply prose-headings:text-foreground prose-headings:font-bold;
+    @apply prose-p:text-foreground/90;
+    @apply prose-a:text-link prose-a:font-medium prose-a:no-underline hover:prose-a:text-link-hover hover:prose-a:underline;
+    @apply prose-strong:text-foreground prose-em:text-foreground;
+    @apply prose-code:rounded prose-code:bg-muted prose-code:px-1 prose-code:py-0.5 prose-code:text-foreground prose-code:before:content-none prose-code:after:content-none;
+    @apply prose-pre:border prose-pre:border-border prose-pre:bg-muted prose-pre:text-foreground;
+    @apply prose-blockquote:border-l-primary/30 prose-blockquote:text-muted-foreground;
+    @apply prose-hr:border-border;
+    @apply prose-th:text-foreground prose-td:text-foreground;
+    @apply prose-thead:border-border prose-tr:border-border;
+    @apply prose-li:text-foreground prose-li:marker:text-muted-foreground;
+    @apply prose-img:rounded-lg;
+    @apply prose-figcaption:text-muted-foreground;
+  }
 }

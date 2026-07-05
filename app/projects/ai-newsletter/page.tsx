@@ -2,8 +2,7 @@ import { Metadata } from "next";
 import Image from "next/image";
 import { Badge } from "@/components/ui/badge";
 import { projectDetails } from "./project-details";
-import ReactMarkdown from "react-markdown";
-import remarkGfm from "remark-gfm";
+import { SiteMarkdown } from "@/components/site-markdown";
 import { fetchReadmeFromGitHub } from "@/lib/github-utils";
 
 export const metadata: Metadata = {
@@ -68,7 +67,7 @@ export default async function AINewsletter() {
         </div>
 
         {/* Description Section */}
-        <div className="prose max-w-none">
+        <div className="prose-site">
           <p className="text-center text-lg text-muted-foreground">
             {safeDetails.description}
           </p>
@@ -100,12 +99,7 @@ export default async function AINewsletter() {
         </div>
       </div>
 
-      {/* README Content Section */}
-      <div className="prose max-w-none w-full py-8">
-        <ReactMarkdown remarkPlugins={[remarkGfm]}>
-          {readmeContent}
-        </ReactMarkdown>
-      </div>
+      <SiteMarkdown className="py-8">{readmeContent}</SiteMarkdown>
     </main>
   );
 }
