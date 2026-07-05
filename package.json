@@ -36,6 +36,7 @@
     "@tailwindcss/typography": "^0.5.16",
     "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",
+    "color2k": "^2.0.4",
     "crt-subpixel": "github:SollalF/crt-subpixel",
     "framer-motion": "^12.6.2",
     "gray-matter": "^4.0.3",
