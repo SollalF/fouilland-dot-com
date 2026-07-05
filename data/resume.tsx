@@ -87,8 +87,13 @@ export const SKILLS_DATA: Record<string, Skill[]> = {
       icon: <i className="cib-python text-yellow-500" />,
     },
     {
-      name: "Flask",
+      name: "FastAPI",
       rating: 4,
+      icon: <i className="cib-python text-teal-500" />,
+    },
+    {
+      name: "Flask",
+      rating: 3,
       icon: <i className="cib-flask text-black" />,
     },
     {
@@ -98,8 +103,13 @@ export const SKILLS_DATA: Record<string, Skill[]> = {
     },
     {
       name: "Docker",
-      rating: 1,
+      rating: 2,
       icon: <i className="cib-docker text-blue-600" />,
+    },
+    {
+      name: "Terraform",
+      rating: 2,
+      icon: <i className="cib-terraform text-purple-600" />,
     },
   ],
   [SKILL_CATEGORIES.DATABASE]: [
@@ -107,6 +117,11 @@ export const SKILLS_DATA: Record<string, Skill[]> = {
       name: "MongoDB",
       rating: 2,
       icon: <i className="cib-mongodb text-green-600" />,
+    },
+    {
+      name: "DynamoDB",
+      rating: 3,
+      icon: <i className="cib-amazon-aws text-orange-500" />,
     },
     {
       name: "Cosmos DB",
@@ -121,14 +136,24 @@ export const SKILLS_DATA: Record<string, Skill[]> = {
   ],
   [SKILL_CATEGORIES.CLOUD]: [
     {
+      name: "AWS",
+      rating: 3,
+      icon: <i className="cib-amazon-aws text-orange-500" />,
+    },
+    {
       name: "Azure",
-      rating: 4,
+      rating: 2,
       icon: <i className="cil-code text-blue-700" />,
     },
     {
       name: "DigitalOcean",
       rating: 5,
       icon: <i className="cil-code text-blue-500" />,
+    },
+    {
+      name: "OVH",
+      rating: 2,
+      icon: <i className="cil-code text-red-500" />,
     },
   ],
   [SKILL_CATEGORIES.AI]: [
@@ -139,8 +164,18 @@ export const SKILLS_DATA: Record<string, Skill[]> = {
     },
     {
       name: "Claude",
-      rating: 3,
+      rating: 4,
       icon: <i className="cil-code text-violet-600" />,
+    },
+    {
+      name: "vLLM",
+      rating: 3,
+      icon: <i className="cil-code text-orange-600" />,
+    },
+    {
+      name: "OpenClaw",
+      rating: 2,
+      icon: <i className="cil-code text-blue-500" />,
     },
     {
       name: "Langchain",
@@ -232,14 +267,26 @@ export const DATA = {
 
   work: [
     {
+      company: "Intact",
+      href: "https://intact.io",
+      badges: [],
+      location: "Hong Kong SAR",
+      title: "AI Developer",
+      logoUrl: "/intact_logo.svg",
+      start: "January 2026",
+      end: "Present",
+      description:
+        "AI Developer at Intact, working on cutting-edge AI solutions.",
+    },
+    {
       company: "Solomon Learning Group",
       href: "https://solomonlearning.com",
       badges: [],
-      location: "Hong Kong",
-      title: "Full Stack Developer (Gen AI)",
+      location: "Hong Kong SAR",
+      title: "Fullstack AI Developer",
       logoUrl: "/solomon_logo.png",
       start: "April 2024",
-      end: "Present",
+      end: "December 2025",
       description:
         "Created goodclass.ai, a full-stack AI education platform with Flask backend, HTML/Typescript frontend, and Cosmos DB. Led backend development on Azure and DigitalOcean using S3 Storage, CosmoDB, MongoDB, Redis, and Auth0. Localized in 20+ languages using PyBabel and DeepL. Designed AI chatbot with Langchain integrating OpenAI, Claude, Qwen, Gemini, DALL-E, and Flux APIs. Managed team of 7 using Jira and Monday.com with agile methodologies. Implemented CI/CD with GitHub Actions and ensured code quality with Pytest, pre-commit hooks, formatters, and linters. Conducted load testing with JMeter and implemented Telemetry for performance tracking.",
     },
