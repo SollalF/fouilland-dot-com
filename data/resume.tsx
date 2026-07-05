@@ -121,8 +121,13 @@ export const SKILLS_DATA: Record<string, Skill[]> = {
   ],
   [SKILL_CATEGORIES.CLOUD]: [
     {
+      name: "AWS",
+      rating: 3,
+      icon: <i className="cib-amazon-aws text-orange-500" />,
+    },
+    {
       name: "Azure",
-      rating: 4,
+      rating: 2,
       icon: <i className="cil-code text-blue-700" />,
     },
     {
