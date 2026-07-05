@@ -23,7 +23,7 @@ export function SkillCategory({ title, skills, icon }: SkillCategoryProps) {
         <h3 className="tracking-tight text-2xl font-bold uppercase md:text-3xl">
           {title}
         </h3>
-        <hr className="h-1 w-full bg-stone-300 dark:bg-stone-700" />
+        <hr className="h-1 w-full bg-border" />
       </CardHeader>
       <CardContent className="p-6 pt-4">
         <div className="flex flex-col gap-5">

@@ -68,7 +68,7 @@ export default async function AINewsletter() {
         </div>
 
         {/* Description Section */}
-        <div className="prose dark:prose-invert max-w-none">
+        <div className="prose max-w-none">
           <p className="text-center text-lg text-muted-foreground">
             {safeDetails.description}
           </p>
@@ -82,7 +82,7 @@ export default async function AINewsletter() {
               href={safeDetails.githubUrl}
               target="_blank"
               rel="noopener noreferrer"
-              className="text-blue-500 hover:text-blue-700 inline-block"
+              className="text-link hover:text-link-hover inline-block"
             >
               View Source →
             </a>
@@ -92,7 +92,7 @@ export default async function AINewsletter() {
               href={safeDetails.liveUrl}
               target="_blank"
               rel="noopener noreferrer"
-              className="text-green-500 hover:text-green-700 inline-block"
+              className="text-success hover:text-success-hover inline-block"
             >
               Live Demo →
             </a>
@@ -101,7 +101,7 @@ export default async function AINewsletter() {
       </div>
 
       {/* README Content Section */}
-      <div className="prose dark:prose-invert max-w-none w-full py-8">
+      <div className="prose max-w-none w-full py-8">
         <ReactMarkdown remarkPlugins={[remarkGfm]}>
           {readmeContent}
         </ReactMarkdown>

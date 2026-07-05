@@ -21,7 +21,7 @@ export function SkillsSection({ delayStart = 0 }: SkillsSectionProps) {
       </BlurFade>
 
       <BlurFade delay={delayStart + 0.05}>
-        <div className="prose prose-lg prose-stone max-w-none text-stone-950 prose-p:leading-snug prose-ul:list-none prose-ul:p-0 prose-li:p-0 prose-li:leading-snug md:prose-xl dark:prose-invert dark:text-stone-50">
+        <div className="prose prose-lg max-w-none text-foreground prose-p:leading-snug prose-ul:list-none prose-ul:p-0 prose-li:p-0 prose-li:leading-snug md:prose-xl">
           <p>
             Here&apos;s a list of my technical skills. As you can see, I
             specialize in Web and AI technologies, but I&apos;ve learned other

@@ -86,7 +86,7 @@ export default function CrtSubpixelPage() {
         </div>
 
         {/* Description Section */}
-        <div className="prose dark:prose-invert max-w-none">
+        <div className="prose max-w-none">
           <p className="text-center text-lg text-muted-foreground">
             {projectDetails.description}
           </p>
@@ -116,7 +116,7 @@ export default function CrtSubpixelPage() {
       </div>
 
       {/* Article Content */}
-      <article className="prose dark:prose-invert prose-zinc max-w-none w-full py-12">
+      <article className="prose prose-zinc max-w-none w-full py-12">
         {/* Introduction */}
         <section>
           <h2>The Inspiration</h2>
@@ -175,7 +175,7 @@ export default function CrtSubpixelPage() {
               href="https://www.youtube.com/watch?v=KuXjwB4LzSA"
               target="_blank"
               rel="noopener noreferrer"
-              className="text-blue-400 hover:underline inline-flex items-center gap-1"
+              className="text-link hover:text-link-hover hover:underline inline-flex items-center gap-1"
             >
               image processing at a fairly low level
               <ExternalLink className="w-3 h-3" />
@@ -231,7 +231,7 @@ export default function CrtSubpixelPage() {
               href="https://www.youtube.com/watch?v=AF8d72mA41M"
               target="_blank"
               rel="noopener noreferrer"
-              className="text-blue-400 hover:underline inline-flex items-center gap-1"
+              className="text-link hover:text-link-hover hover:underline inline-flex items-center gap-1"
             >
               blue lights
               <ExternalLink className="w-3 h-3" />
@@ -293,7 +293,7 @@ export default function CrtSubpixelPage() {
               href="https://www.youtube.com/watch?v=2sxKJeYSBmI"
               target="_blank"
               rel="noopener noreferrer"
-              className="text-blue-400 hover:underline inline-flex items-center gap-1"
+              className="text-link hover:text-link-hover hover:underline inline-flex items-center gap-1"
             >
               this video
               <ExternalLink className="w-3 h-3" />
@@ -315,7 +315,7 @@ export default function CrtSubpixelPage() {
               href="https://www.youtube.com/watch?v=28u6RoYiCWI"
               target="_blank"
               rel="noopener noreferrer"
-              className="text-blue-400 hover:underline inline-flex items-center gap-1"
+              className="text-link hover:text-link-hover hover:underline inline-flex items-center gap-1"
             >
               older games look better on these older displays
               <ExternalLink className="w-3 h-3" />
@@ -473,7 +473,7 @@ export default function CrtSubpixelPage() {
               href="https://www.youtube.com/watch?v=oIur9NATg-I"
               target="_blank"
               rel="noopener noreferrer"
-              className="text-blue-400 hover:underline inline-flex items-center gap-1"
+              className="text-link hover:text-link-hover hover:underline inline-flex items-center gap-1"
             >
               here
               <ExternalLink className="w-3 h-3" />

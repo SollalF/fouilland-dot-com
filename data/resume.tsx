@@ -67,7 +67,7 @@ export const SKILLS_DATA: Record<string, Skill[]> = {
     {
       name: "Next.js",
       rating: 3,
-      icon: <i className="cib-next-js text-black dark:text-white" />,
+      icon: <i className="cib-next-js text-black" />,
     },
     {
       name: "React",
@@ -89,7 +89,7 @@ export const SKILLS_DATA: Record<string, Skill[]> = {
     {
       name: "Flask",
       rating: 4,
-      icon: <i className="cib-flask text-black dark:text-white" />,
+      icon: <i className="cib-flask text-black" />,
     },
     {
       name: "Node.js",
@@ -167,7 +167,7 @@ export const SKILLS_DATA: Record<string, Skill[]> = {
     {
       name: "GitHub Actions",
       rating: 3,
-      icon: <i className="cib-github text-gray-800 dark:text-white" />,
+      icon: <i className="cib-github text-gray-800" />,
     },
     {
       name: "Pytest",

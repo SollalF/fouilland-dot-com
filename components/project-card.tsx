@@ -71,7 +71,7 @@ export function ProjectCard({ project, className }: Props) {
       <div className="relative z-10 flex flex-col flex-grow justify-end p-6 text-white">
         <CardHeader className="p-0 mb-2">
           <CardTitle className="text-2xl font-bold mb-1">{title}</CardTitle>
-          <CardDescription className="text-gray-200 line-clamp-3 text-sm">
+          <CardDescription className="text-muted-foreground line-clamp-3 text-sm">
             {description}
           </CardDescription>
         </CardHeader>
