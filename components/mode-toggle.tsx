@@ -5,11 +5,10 @@ import { useCallback, useEffect, useState } from "react";
 import { Button } from "@/components/ui/button";
 import {
   applyThemePalette,
-  DARK_THEME_PALETTE,
   getActivePaletteId,
   getSiteThemeConfig,
-  LIGHT_THEME_PALETTE,
   paletteSelected,
+  THEME_PALETTES,
   type SiteColorValues,
   type SiteThemeChangeDetail,
 } from "@/lib/site-theme";
@@ -35,12 +34,14 @@ export function ModeToggle() {
   }, []);
 
   const isDark = config
-    ? paletteSelected(config, DARK_THEME_PALETTE, activePaletteId)
+    ? paletteSelected(config, THEME_PALETTES.dark, activePaletteId)
     : false;
 
   const toggleMode = useCallback(() => {
-    const nextPalette = isDark ? LIGHT_THEME_PALETTE : DARK_THEME_PALETTE;
-    setConfig(applyThemePalette(nextPalette));
+    const nextPalette = isDark ? THEME_PALETTES.light : THEME_PALETTES.dark;
+    const next = applyThemePalette(nextPalette);
+    setConfig(next);
+    setActivePaletteId(nextPalette.id);
   }, [isDark]);
 
   if (!config) {

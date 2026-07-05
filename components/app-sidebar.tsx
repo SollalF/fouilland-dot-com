@@ -23,6 +23,7 @@ import {
   TooltipTrigger,
 } from "@radix-ui/react-tooltip";
 import { ModeToggle } from "./mode-toggle";
+import { ThemeColorPicker } from "@/components/theme-color-picker";
 import { siteConfig } from "@/data/site";
 import Image from "next/image";
 // This is sample data.
@@ -85,14 +86,17 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
       </SidebarContent>
       <SidebarRail />
       <SidebarFooter>
-        <Tooltip>
-          <TooltipTrigger asChild>
-            <ModeToggle />
-          </TooltipTrigger>
-          <TooltipContent>
-            <p>Theme</p>
-          </TooltipContent>
-        </Tooltip>
+        <div className="flex items-center gap-1">
+          <ThemeColorPicker variant="sidebar" />
+          <Tooltip>
+            <TooltipTrigger asChild>
+              <ModeToggle />
+            </TooltipTrigger>
+            <TooltipContent>
+              <p>Theme</p>
+            </TooltipContent>
+          </Tooltip>
+        </div>
       </SidebarFooter>
     </Sidebar>
   );

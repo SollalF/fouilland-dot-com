@@ -1,4 +1,4 @@
-import { ThemeProvider } from "@/components/theme-provider";
+import { SiteThemeProvider } from "@/components/site-theme-provider";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { DATA } from "@/data/resume";
 import { cn } from "@/lib/utils";
@@ -56,9 +56,9 @@ export default function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning>
       <body className={cn(fontSans.variable)}>
-        <ThemeProvider attribute="class" defaultTheme="light">
+        <SiteThemeProvider>
           <TooltipProvider delayDuration={0}>{children}</TooltipProvider>
-        </ThemeProvider>
+        </SiteThemeProvider>
       </body>
     </html>
   );
