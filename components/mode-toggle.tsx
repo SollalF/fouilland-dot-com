@@ -5,6 +5,7 @@ import { useCallback, useEffect, useState } from "react";
 import { Button } from "@/components/ui/button";
 import {
   applySiteThemePreset,
+  isDarkLikeTheme,
   resolveActiveThemeId,
   SITE_CUSTOM_THEME_ID,
   SITE_THEMES,
@@ -16,6 +17,7 @@ const iconClassName = "h-[1.2rem] w-[1.2rem] text-foreground";
 
 export function ModeToggle() {
   const [activeThemeId, setActiveThemeId] = useState<SiteThemeId | null>(null);
+  const [appearanceRevision, setAppearanceRevision] = useState(0);
 
   useEffect(() => {
     setActiveThemeId(resolveActiveThemeId());
@@ -25,21 +27,30 @@ export function ModeToggle() {
       setActiveThemeId(themeId);
     };
 
+    const onAppearanceChange = () => {
+      setAppearanceRevision((revision) => revision + 1);
+    };
+
     window.addEventListener("site-theme-change", onThemeChange);
+    window.addEventListener("site-color-change", onAppearanceChange);
 
     return () => {
       window.removeEventListener("site-theme-change", onThemeChange);
+      window.removeEventListener("site-color-change", onAppearanceChange);
     };
   }, []);
 
-  const isDark = activeThemeId === "dark";
   const isCustom = activeThemeId === SITE_CUSTOM_THEME_ID;
+  const isDarkLike =
+    activeThemeId && appearanceRevision >= 0
+      ? isDarkLikeTheme(activeThemeId)
+      : false;
 
   const toggleMode = useCallback(() => {
-    const nextTheme = isDark ? SITE_THEMES.light : SITE_THEMES.dark;
+    const nextTheme = isDarkLike ? SITE_THEMES.light : SITE_THEMES.dark;
     applySiteThemePreset(nextTheme);
     setActiveThemeId(nextTheme.id);
-  }, [isDark]);
+  }, [isDarkLike]);
 
   if (!activeThemeId) {
     return (
@@ -55,11 +66,10 @@ export function ModeToggle() {
     );
   }
 
+  const nextMode = isDarkLike ? "light" : "dark";
   const ariaLabel = isCustom
-    ? "Custom theme active. Switch to dark mode"
-    : isDark
-      ? "Switch to light mode"
-      : "Switch to dark mode";
+    ? `Custom theme active. Switch to ${nextMode} mode`
+    : `Switch to ${nextMode} mode`;
 
   return (
     <Button
@@ -72,7 +82,7 @@ export function ModeToggle() {
     >
       {isCustom ? (
         <Palette className={iconClassName} />
-      ) : isDark ? (
+      ) : isDarkLike ? (
         <Sun className={iconClassName} />
       ) : (
         <Moon className={iconClassName} />

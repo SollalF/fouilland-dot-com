@@ -1,9 +1,8 @@
 import {
   applySiteColors,
   colorsMatchValues,
-  DARK_SITE_COLORS,
-  getSiteColorConfig,
-  LIGHT_SITE_COLORS,
+  isDarkColor,
+  loadSiteColorConfig,
   saveSiteColorConfig,
   type SiteColorValues,
 } from "./colors";
@@ -21,7 +20,7 @@ import {
   type SiteShapeValues,
 } from "./shape";
 
-export type SitePresetThemeId = "light" | "dark";
+export type SitePresetThemeId = "light" | "dark" | "hacker";
 export type SiteThemeId = SitePresetThemeId | "custom";
 
 export const SITE_CUSTOM_THEME_ID = "custom" as const satisfies SiteThemeId;
@@ -47,25 +46,55 @@ export const SITE_THEMES: Record<SitePresetThemeId, SiteTheme> = {
   light: {
     id: "light",
     label: "Light",
-    colors: LIGHT_SITE_COLORS,
+    colors: {
+      primary: "#3538CD",
+      text: "#1E1B4B",
+      background: "#FFFFFF",
+    },
     font: "inter",
     shape: { radius: "md", borderWidth: "thin" },
   },
   dark: {
     id: "dark",
     label: "Dark",
-    colors: DARK_SITE_COLORS,
+    colors: {
+      primary: "#CBD5E1",
+      text: "#E2E8F0",
+      background: "#0F172A",
+    },
     font: "inter",
     shape: { radius: "lg", borderWidth: "thin" },
   },
+  hacker: {
+    id: "hacker",
+    label: "Hacker",
+    colors: {
+      primary: "#00FF41",
+      text: "#33FF33",
+      background: "#0A0F0A",
+    },
+    font: "ibm-plex-mono",
+    shape: { radius: "none", borderWidth: "medium" },
+  },
 };
+
+export const DEFAULT_SITE_COLORS = SITE_THEMES.light.colors;
+
+export function getSiteColorConfig(): SiteColorValues {
+  return loadSiteColorConfig() ?? SITE_THEMES.light.colors;
+}
 
 export const SITE_THEME_ORDER = Object.keys(SITE_THEMES) as SitePresetThemeId[];
 
 const THEME_ID_STORAGE_KEY = "site-theme-palette-id";
 
 function isSiteThemeId(value: string | null): value is SiteThemeId {
-  return value === "light" || value === "dark" || value === "custom";
+  return (
+    value === "light" ||
+    value === "dark" ||
+    value === "hacker" ||
+    value === "custom"
+  );
 }
 
 function presetMatches(
@@ -102,6 +131,7 @@ export function resolveActiveThemeId(): SiteThemeId {
 
   if (presetMatches(colors, font, shape, SITE_THEMES.light)) return "light";
   if (presetMatches(colors, font, shape, SITE_THEMES.dark)) return "dark";
+  if (presetMatches(colors, font, shape, SITE_THEMES.hacker)) return "hacker";
   return SITE_CUSTOM_THEME_ID;
 }
 
@@ -122,6 +152,14 @@ export function themeSelected(
   themeId: SitePresetThemeId,
 ) {
   return activeThemeId === themeId;
+}
+
+export function isDarkLikeTheme(themeId: SiteThemeId): boolean {
+  if (themeId === SITE_CUSTOM_THEME_ID) {
+    return isDarkColor(getSiteColorConfig().background);
+  }
+
+  return isDarkColor(SITE_THEMES[themeId].colors.background);
 }
 
 export function applySiteThemePreset(theme: SiteTheme): SiteTheme {

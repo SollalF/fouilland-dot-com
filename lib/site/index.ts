@@ -3,8 +3,7 @@ export { getPrimaryColor, getThemeColor } from "./css-vars";
 export {
   applySiteColors,
   colorsMatch,
-  DEFAULT_SITE_COLORS,
-  getSiteColorConfig,
+  isDarkColor,
   normalizeHex,
   ROLE_COLOR_PRESETS,
   saveSiteColorConfig,
@@ -50,7 +49,10 @@ export {
 export {
   applySiteFromStorage,
   applySiteThemePreset,
+  DEFAULT_SITE_COLORS,
   getActiveThemeId,
+  getSiteColorConfig,
+  isDarkLikeTheme,
   resolveActiveThemeId,
   setActiveThemeId,
   SITE_CUSTOM_THEME,

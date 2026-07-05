@@ -9,22 +9,6 @@ export type RoleColorPreset = {
   color: string;
 };
 
-export const LIGHT_SITE_COLORS: SiteColorValues = {
-  primary: "#3538CD",
-  text: "#1E1B4B",
-  background: "#FFFFFF",
-};
-
-export const DARK_SITE_COLORS: SiteColorValues = {
-  primary: "#CBD5E1",
-  text: "#E2E8F0",
-  background: "#0F172A",
-};
-
-export const DEFAULT_SITE_COLORS: SiteColorValues = {
-  ...LIGHT_SITE_COLORS,
-};
-
 export const ROLE_COLOR_PRESETS: Record<SiteColorRole, RoleColorPreset[]> = {
   primary: [
     { label: "Cherry Bomb", color: "#E11D48" },
@@ -82,6 +66,16 @@ export function colorsMatch(a: string, b: string) {
 
 export function colorsMatchValues(a: SiteColorValues, b: SiteColorValues) {
   return SITE_COLOR_ROLES.every((role) => colorsMatch(a[role], b[role]));
+}
+
+/** Whether a color reads as dark based on relative luminance. */
+export function isDarkColor(color: string): boolean {
+  const hex = normalizeHex(color);
+  const r = Number.parseInt(hex.slice(1, 3), 16);
+  const g = Number.parseInt(hex.slice(3, 5), 16);
+  const b = Number.parseInt(hex.slice(5, 7), 16);
+  const luminance = (0.299 * r + 0.587 * g + 0.114 * b) / 255;
+  return luminance < 0.5;
 }
 
 function normalizeSiteColors(colors: SiteColorValues): SiteColorValues {
@@ -153,7 +147,7 @@ function parseStoredColors(raw: string): SiteColorValues | null {
   }
 }
 
-function loadSiteColorConfig(): SiteColorValues | null {
+export function loadSiteColorConfig(): SiteColorValues | null {
   if (typeof window === "undefined") return null;
 
   try {
@@ -178,8 +172,4 @@ export function saveSiteColorConfig(config: SiteColorValues): void {
       detail: { colors: normalized },
     }),
   );
-}
-
-export function getSiteColorConfig(): SiteColorValues {
-  return loadSiteColorConfig() ?? DEFAULT_SITE_COLORS;
 }

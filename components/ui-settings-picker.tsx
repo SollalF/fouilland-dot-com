@@ -6,6 +6,7 @@ import {
   Palette,
   SlidersHorizontal,
   Sun,
+  Terminal,
   type LucideIcon,
 } from "lucide-react";
 import { useCallback, useEffect, useState } from "react";
@@ -293,12 +294,12 @@ export function UiSettingsPicker({ variant = "dock" }: UiSettingsPickerProps) {
 
         <div className="space-y-2">
           <Label>Theme</Label>
-          <div className="flex items-center gap-2">
+          <div className="flex flex-wrap items-center gap-2">
             {SITE_THEME_ORDER.map((id) => (
               <PresetButton
                 key={id}
                 label={SITE_THEMES[id].label}
-                icon={id === "light" ? Sun : Moon}
+                icon={id === "light" ? Sun : id === "dark" ? Moon : Terminal}
                 selected={themeSelected(activeThemeId, id)}
                 onSelect={() => applyTheme(SITE_THEMES[id])}
               />
