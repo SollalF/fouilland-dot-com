@@ -164,8 +164,18 @@ export const SKILLS_DATA: Record<string, Skill[]> = {
     },
     {
       name: "Claude",
-      rating: 3,
+      rating: 4,
       icon: <i className="cil-code text-violet-600" />,
+    },
+    {
+      name: "vLLM",
+      rating: 3,
+      icon: <i className="cil-code text-orange-600" />,
+    },
+    {
+      name: "OpenClaw",
+      rating: 2,
+      icon: <i className="cil-code text-blue-500" />,
     },
     {
       name: "Langchain",
