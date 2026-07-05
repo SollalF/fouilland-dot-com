@@ -87,8 +87,13 @@ export const SKILLS_DATA: Record<string, Skill[]> = {
       icon: <i className="cib-python text-yellow-500" />,
     },
     {
-      name: "Flask",
+      name: "FastAPI",
       rating: 4,
+      icon: <i className="cib-python text-teal-500" />,
+    },
+    {
+      name: "Flask",
+      rating: 3,
       icon: <i className="cib-flask text-black dark:text-white" />,
     },
     {
@@ -98,8 +103,13 @@ export const SKILLS_DATA: Record<string, Skill[]> = {
     },
     {
       name: "Docker",
-      rating: 1,
+      rating: 2,
       icon: <i className="cib-docker text-blue-600" />,
+    },
+    {
+      name: "Terraform",
+      rating: 2,
+      icon: <i className="cib-terraform text-purple-600" />,
     },
   ],
   [SKILL_CATEGORIES.DATABASE]: [
@@ -107,6 +117,11 @@ export const SKILLS_DATA: Record<string, Skill[]> = {
       name: "MongoDB",
       rating: 2,
       icon: <i className="cib-mongodb text-green-600" />,
+    },
+    {
+      name: "DynamoDB",
+      rating: 3,
+      icon: <i className="cib-amazon-aws text-orange-500" />,
     },
     {
       name: "Cosmos DB",
