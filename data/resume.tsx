@@ -135,6 +135,11 @@ export const SKILLS_DATA: Record<string, Skill[]> = {
       rating: 5,
       icon: <i className="cil-code text-blue-500" />,
     },
+    {
+      name: "OVH",
+      rating: 2,
+      icon: <i className="cil-code text-red-500" />,
+    },
   ],
   [SKILL_CATEGORIES.AI]: [
     {
