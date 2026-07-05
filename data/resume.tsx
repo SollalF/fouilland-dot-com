@@ -237,7 +237,7 @@ export const DATA = {
       badges: [],
       location: "Hong Kong SAR",
       title: "AI Developer",
-      logoUrl: "/intact_logo.png",
+      logoUrl: "/intact_logo.svg",
       start: "January 2026",
       end: "Present",
       description:
