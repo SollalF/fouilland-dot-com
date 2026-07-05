@@ -1,11 +1,11 @@
 "use client";
 
 import { useEffect } from "react";
-import { applySiteTheme, getSiteThemeConfig } from "@/lib/site-theme";
+import { applySiteFromStorage } from "@/lib/site";
 
 export function SiteThemeProvider({ children }: { children: React.ReactNode }) {
   useEffect(() => {
-    applySiteTheme(getSiteThemeConfig());
+    applySiteFromStorage();
   }, []);
 
   return children;

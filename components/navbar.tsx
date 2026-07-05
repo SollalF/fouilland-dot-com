@@ -1,6 +1,6 @@
 import { Dock, DockIcon } from "@/components/magicui/dock";
 import { ModeToggle } from "@/components/mode-toggle";
-import { ThemeColorPicker } from "@/components/theme-color-picker";
+import { UiSettingsPicker } from "@/components/ui-settings-picker";
 import { buttonVariants } from "@/components/ui/button";
 import { Separator } from "@/components/ui/separator";
 import {
@@ -62,7 +62,7 @@ export default function Navbar() {
           ))}
         <Separator orientation="vertical" className="h-full py-2" />
         <DockIcon size={48}>
-          <ThemeColorPicker />
+          <UiSettingsPicker />
         </DockIcon>
         <DockIcon size={48}>
           <Tooltip>

@@ -4,8 +4,8 @@
 @plugin "@tailwindcss/typography";
 
 @theme {
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --font-sans: var(--site-font-body);
+  --font-mono: var(--site-font-mono);
 }
 
 /*
@@ -24,7 +24,15 @@
   --site-text: #1e1b4b;
   --site-background: #ffffff;
 
-  --radius: 0.625rem;
+  --site-font-body: var(--font-inter, ui-sans-serif, system-ui, sans-serif);
+  --site-font-heading: var(--site-font-body);
+  --site-font-mono:
+    ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+
+  --site-radius: 0.625rem;
+  --site-border-width: 1px;
+  --site-border-style: solid;
+  --radius: var(--site-radius);
 
   /* Shade scale — mixes of primary, text, and background */
   --background: var(--site-background);
@@ -192,8 +200,24 @@
   }
   body {
     @apply bg-background text-foreground;
+    font-family: var(--site-font-body);
+  }
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    font-family: var(--site-font-heading);
   }
   a:not([class]) {
     @apply text-link hover:text-link-hover underline-offset-4 hover:underline;
+  }
+}
+
+@layer utilities {
+  .border {
+    border-width: var(--site-border-width);
+    border-style: var(--site-border-style);
   }
 }

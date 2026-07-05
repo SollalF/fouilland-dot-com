@@ -16,6 +16,7 @@ import {
   SidebarMenu,
   SidebarMenuItem,
   SidebarMenuButton,
+  useSidebar,
 } from "@/components/ui/sidebar";
 import {
   Tooltip,
@@ -23,7 +24,7 @@ import {
   TooltipTrigger,
 } from "@radix-ui/react-tooltip";
 import { ModeToggle } from "./mode-toggle";
-import { ThemeColorPicker } from "@/components/theme-color-picker";
+import { UiSettingsPicker } from "@/components/ui-settings-picker";
 import { siteConfig } from "@/data/site";
 import Image from "next/image";
 // This is sample data.
@@ -75,6 +76,8 @@ function Home() {
 }
 
 export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
+  const { state } = useSidebar();
+
   return (
     <Sidebar collapsible="icon" {...props}>
       <SidebarHeader>
@@ -87,7 +90,7 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
       <SidebarRail />
       <SidebarFooter>
         <div className="flex items-center gap-1">
-          <ThemeColorPicker variant="sidebar" />
+          {state === "expanded" ? <UiSettingsPicker variant="sidebar" /> : null}
           <Tooltip>
             <TooltipTrigger asChild>
               <ModeToggle />

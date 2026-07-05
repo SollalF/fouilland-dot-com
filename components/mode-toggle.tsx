@@ -1,50 +1,47 @@
 "use client";
 
-import { Moon, Sun } from "lucide-react";
+import { Moon, Palette, Sun } from "lucide-react";
 import { useCallback, useEffect, useState } from "react";
 import { Button } from "@/components/ui/button";
 import {
-  applyThemePalette,
-  getActivePaletteId,
-  getSiteThemeConfig,
-  paletteSelected,
-  THEME_PALETTES,
-  type SiteColorValues,
+  applySiteThemePreset,
+  resolveActiveThemeId,
+  SITE_CUSTOM_THEME_ID,
+  SITE_THEMES,
   type SiteThemeChangeDetail,
-} from "@/lib/site-theme";
+  type SiteThemeId,
+} from "@/lib/site";
+
+const iconClassName = "h-[1.2rem] w-[1.2rem] text-foreground";
 
 export function ModeToggle() {
-  const [config, setConfig] = useState<SiteColorValues | null>(null);
-  const [activePaletteId, setActivePaletteId] = useState<string | null>(null);
+  const [activeThemeId, setActiveThemeId] = useState<SiteThemeId | null>(null);
 
   useEffect(() => {
-    setConfig(getSiteThemeConfig());
-    setActivePaletteId(getActivePaletteId());
+    setActiveThemeId(resolveActiveThemeId());
 
     const onThemeChange = (event: Event) => {
-      const { colors, paletteId } = (
-        event as CustomEvent<SiteThemeChangeDetail>
-      ).detail;
-      setConfig(colors);
-      setActivePaletteId(paletteId);
+      const { themeId } = (event as CustomEvent<SiteThemeChangeDetail>).detail;
+      setActiveThemeId(themeId);
     };
 
     window.addEventListener("site-theme-change", onThemeChange);
-    return () => window.removeEventListener("site-theme-change", onThemeChange);
+
+    return () => {
+      window.removeEventListener("site-theme-change", onThemeChange);
+    };
   }, []);
 
-  const isDark = config
-    ? paletteSelected(config, THEME_PALETTES.dark, activePaletteId)
-    : false;
+  const isDark = activeThemeId === "dark";
+  const isCustom = activeThemeId === SITE_CUSTOM_THEME_ID;
 
   const toggleMode = useCallback(() => {
-    const nextPalette = isDark ? THEME_PALETTES.light : THEME_PALETTES.dark;
-    const next = applyThemePalette(nextPalette);
-    setConfig(next);
-    setActivePaletteId(nextPalette.id);
+    const nextTheme = isDark ? SITE_THEMES.light : SITE_THEMES.dark;
+    applySiteThemePreset(nextTheme);
+    setActiveThemeId(nextTheme.id);
   }, [isDark]);
 
-  if (!config) {
+  if (!activeThemeId) {
     return (
       <Button
         variant="ghost"
@@ -53,10 +50,16 @@ export function ModeToggle() {
         className="px-2"
         disabled
       >
-        <Sun className="h-[1.2rem] w-[1.2rem] text-foreground" />
+        <Sun className={iconClassName} />
       </Button>
     );
   }
+
+  const ariaLabel = isCustom
+    ? "Custom theme active. Switch to dark mode"
+    : isDark
+      ? "Switch to light mode"
+      : "Switch to dark mode";
 
   return (
     <Button
@@ -65,12 +68,14 @@ export function ModeToggle() {
       size="icon"
       className="px-2"
       onClick={toggleMode}
-      aria-label={isDark ? "Switch to light mode" : "Switch to dark mode"}
+      aria-label={ariaLabel}
     >
-      {isDark ? (
-        <Sun className="h-[1.2rem] w-[1.2rem] text-foreground" />
+      {isCustom ? (
+        <Palette className={iconClassName} />
+      ) : isDark ? (
+        <Sun className={iconClassName} />
       ) : (
-        <Moon className="h-[1.2rem] w-[1.2rem] text-foreground" />
+        <Moon className={iconClassName} />
       )}
     </Button>
   );

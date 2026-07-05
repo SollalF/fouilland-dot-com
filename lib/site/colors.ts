@@ -4,56 +4,48 @@ export type SiteColorRole = "primary" | "text" | "background";
 
 export type SiteColorValues = Record<SiteColorRole, string>;
 
-export type ThemePaletteId = "light" | "dark";
-
-export type ThemePalette = {
-  id: ThemePaletteId;
-  label: string;
-  colors: SiteColorValues;
-};
-
-export const THEME_PALETTES: Record<ThemePaletteId, ThemePalette> = {
-  light: {
-    id: "light",
-    label: "Light",
-    colors: {
-      primary: "#3538CD",
-      text: "#1E1B4B",
-      background: "#FFFFFF",
-    },
-  },
-  dark: {
-    id: "dark",
-    label: "Dark",
-    colors: {
-      primary: "#818CF8",
-      text: "#E0E7FF",
-      background: "#1E1B4B",
-    },
-  },
-};
-
-export const THEME_PALETTE_ORDER = Object.keys(
-  THEME_PALETTES,
-) as ThemePaletteId[];
-
 export type RoleColorPreset = {
   label: string;
   color: string;
 };
 
+export const LIGHT_SITE_COLORS: SiteColorValues = {
+  primary: "#3538CD",
+  text: "#1E1B4B",
+  background: "#FFFFFF",
+};
+
+export const DARK_SITE_COLORS: SiteColorValues = {
+  primary: "#CBD5E1",
+  text: "#E2E8F0",
+  background: "#0F172A",
+};
+
+export const DEFAULT_SITE_COLORS: SiteColorValues = {
+  ...LIGHT_SITE_COLORS,
+};
+
 export const ROLE_COLOR_PRESETS: Record<SiteColorRole, RoleColorPreset[]> = {
   primary: [
-    { label: "Teal", color: "#0891B2" },
-    { label: "Rose", color: "#E11D48" },
+    { label: "Cherry Bomb", color: "#E11D48" },
+    { label: "Grape Soda", color: "#A855F7" },
+    { label: "Lagoon", color: "#06B6D4" },
+    { label: "Mango Sunset", color: "#FB923C" },
+    { label: "Laser Lime", color: "#84CC16" },
   ],
   text: [
-    { label: "Charcoal", color: "#171717" },
-    { label: "Slate", color: "#475569" },
+    { label: "Midnight Ink", color: "#1E1B4B" },
+    { label: "Espresso", color: "#292524" },
+    { label: "Storm Cloud", color: "#475569" },
+    { label: "Moonbeam", color: "#E2E8F0" },
+    { label: "Starlight", color: "#FEF9C3" },
   ],
   background: [
-    { label: "Cream", color: "#FFFBEB" },
-    { label: "Mist", color: "#F1F5F9" },
+    { label: "Vanilla Sky", color: "#FFFBEB" },
+    { label: "Blush Petal", color: "#FFF1F2" },
+    { label: "Mint Fizz", color: "#ECFDF5" },
+    { label: "Midnight", color: "#0F172A" },
+    { label: "Deep Forest", color: "#14532D" },
   ],
 };
 
@@ -69,39 +61,10 @@ export const SITE_COLOR_LABELS: Record<SiteColorRole, string> = {
   background: "Background",
 };
 
-export function colorsMatch(a: string, b: string) {
-  return normalizeHex(a) === normalizeHex(b);
-}
-
-export function colorsMatchValues(a: SiteColorValues, b: SiteColorValues) {
-  return SITE_COLOR_ROLES.every((role) => colorsMatch(a[role], b[role]));
-}
-
-export function paletteSelected(
-  config: SiteColorValues,
-  palette: ThemePalette,
-  activePaletteId: string | null,
-) {
-  if (activePaletteId) return activePaletteId === palette.id;
-  return colorsMatchValues(config, palette.colors);
-}
-
-export function getActivePaletteId(): string | null {
-  if (typeof window === "undefined") return null;
-
-  try {
-    return localStorage.getItem(PALETTE_ID_KEY);
-  } catch {
-    return null;
-  }
-}
-
 const STORAGE_KEY = "site-theme-colors";
-const PALETTE_ID_KEY = "site-theme-palette-id";
 
-export type SiteThemeChangeDetail = {
+export type SiteColorChangeDetail = {
   colors: SiteColorValues;
-  paletteId: string | null;
 };
 
 /** Normalize site colors to lowercase #rrggbb. */
@@ -113,6 +76,14 @@ export function normalizeHex(color: string, fallback = "#000000"): string {
   }
 }
 
+export function colorsMatch(a: string, b: string) {
+  return normalizeHex(a) === normalizeHex(b);
+}
+
+export function colorsMatchValues(a: SiteColorValues, b: SiteColorValues) {
+  return SITE_COLOR_ROLES.every((role) => colorsMatch(a[role], b[role]));
+}
+
 function normalizeSiteColors(colors: SiteColorValues): SiteColorValues {
   return SITE_COLOR_ROLES.reduce((acc, role) => {
     acc[role] = normalizeHex(colors[role]);
@@ -120,11 +91,7 @@ function normalizeSiteColors(colors: SiteColorValues): SiteColorValues {
   }, {} as SiteColorValues);
 }
 
-export const DEFAULT_SITE_THEME: SiteColorValues = {
-  ...THEME_PALETTES.light.colors,
-};
-
-export function applySiteTheme(colors: SiteColorValues): void {
+export function applySiteColors(colors: SiteColorValues): void {
   if (typeof document === "undefined") return;
 
   const normalized = normalizeSiteColors(colors);
@@ -186,7 +153,7 @@ function parseStoredColors(raw: string): SiteColorValues | null {
   }
 }
 
-function loadSiteThemeConfig(): SiteColorValues | null {
+function loadSiteColorConfig(): SiteColorValues | null {
   if (typeof window === "undefined") return null;
 
   try {
@@ -202,33 +169,17 @@ function loadSiteThemeConfig(): SiteColorValues | null {
   }
 }
 
-export function saveSiteThemeConfig(
-  config: SiteColorValues,
-  paletteId: string | null = null,
-): void {
+export function saveSiteColorConfig(config: SiteColorValues): void {
   const normalized = normalizeSiteColors(config);
   localStorage.setItem(STORAGE_KEY, JSON.stringify(normalized));
 
-  if (paletteId) {
-    localStorage.setItem(PALETTE_ID_KEY, paletteId);
-  } else {
-    localStorage.removeItem(PALETTE_ID_KEY);
-  }
-
   window.dispatchEvent(
-    new CustomEvent<SiteThemeChangeDetail>("site-theme-change", {
-      detail: { colors: normalized, paletteId },
+    new CustomEvent<SiteColorChangeDetail>("site-color-change", {
+      detail: { colors: normalized },
     }),
   );
 }
 
-export function applyThemePalette(palette: ThemePalette): SiteColorValues {
-  const next = { ...palette.colors };
-  saveSiteThemeConfig(next, palette.id);
-  applySiteTheme(next);
-  return next;
-}
-
-export function getSiteThemeConfig(): SiteColorValues {
-  return loadSiteThemeConfig() ?? DEFAULT_SITE_THEME;
+export function getSiteColorConfig(): SiteColorValues {
+  return loadSiteColorConfig() ?? DEFAULT_SITE_COLORS;
 }
