@@ -31,7 +31,7 @@ export const siteConfig = {
   // Site metadata
   name: "Sollal Fouilland",
   description:
-    "Full Stack Developer with a knack for crafting cutting-edge web applications and project management for small dynamic teams.",
+    "AI Developer with a knack for crafting cutting-edge web applications and project management for small dynamic teams.",
   url: "https://fouilland.com",
 
   // Branding

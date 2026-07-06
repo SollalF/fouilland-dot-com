@@ -232,7 +232,7 @@ export const DATA = {
   locationLink: "https://www.google.com/maps/place/causewaybay",
   description: siteConfig.description,
   summary:
-    "Full Stack Developer with a knack for crafting cutting-edge web and Gen AI applications. Adept at managing cross-functional teams to successfully achieve project milestones. Proficient in utilizing a wide range of technologies, from Flask and Node.js for robust backend development to AI integration with OpenAI, Azure, and Vertex APIs. Adept at leveraging advanced database solutions and high-availability hosting services to deliver excellence.",
+    "AI Developer with a knack for crafting cutting-edge web and Gen AI applications. Adept at managing cross-functional teams to successfully achieve project milestones. Proficient in utilizing a wide range of technologies, from Flask and Node.js for robust backend development to AI integration with OpenAI, Azure, and Vertex APIs. Adept at leveraging advanced database solutions and high-availability hosting services to deliver excellence.",
   avatarUrl: siteConfig.logo.src,
   skills: Object.values(SKILLS_DATA).flatMap((skills) =>
     skills.map((skill) => skill.name),
