@@ -279,12 +279,12 @@ export function UiSettingsPicker({ variant = "dock" }: UiSettingsPickerProps) {
   const popoverContent = (
     <PopoverContent
       side={variant === "sidebar" ? "right" : "top"}
-      align={variant === "sidebar" ? "start" : "end"}
-      className="w-80"
+      align={variant === "sidebar" ? "start" : "center"}
+      className="mx-4 w-80"
       sideOffset={variant === "sidebar" ? 8 : 16}
       onOpenAutoFocus={(event) => event.preventDefault()}
     >
-      <div className="max-h-[min(42rem,85vh)] space-y-4 overflow-y-auto">
+      <div className="max-h-[min(42rem,85vh)] space-y-4 overflow-y-auto px-2">
         <div className="space-y-1">
           <p className="text-sm font-medium">UI settings</p>
           <p className="text-muted-foreground text-xs">
