@@ -20,7 +20,7 @@ import {
   type SiteShapeValues,
 } from "./shape";
 
-export type SitePresetThemeId = "light" | "dark" | "hacker";
+export type SitePresetThemeId = "light" | "dark" | "hacker" | "polyu";
 export type SiteThemeId = SitePresetThemeId | "custom";
 
 export const SITE_CUSTOM_THEME_ID = "custom" as const satisfies SiteThemeId;
@@ -75,6 +75,16 @@ export const SITE_THEMES: Record<SitePresetThemeId, SiteTheme> = {
     },
     font: "ibm-plex-mono",
     shape: { radius: "none", borderWidth: "medium" },
+  polyu: {
+    id: "polyu",
+    label: "PolyU",
+    colors: {
+      primary: "#A02337",
+      text: "#E8E0D8",
+      background: "#1A1210",
+    },
+    font: "inter",
+    shape: { radius: "md", borderWidth: "thin" },
   },
 };
 
@@ -93,6 +103,7 @@ function isSiteThemeId(value: string | null): value is SiteThemeId {
     value === "light" ||
     value === "dark" ||
     value === "hacker" ||
+    value === "polyu" ||
     value === "custom"
   );
 }
@@ -132,6 +143,7 @@ export function resolveActiveThemeId(): SiteThemeId {
   if (presetMatches(colors, font, shape, SITE_THEMES.light)) return "light";
   if (presetMatches(colors, font, shape, SITE_THEMES.dark)) return "dark";
   if (presetMatches(colors, font, shape, SITE_THEMES.hacker)) return "hacker";
+  if (presetMatches(colors, font, shape, SITE_THEMES.polyu)) return "polyu";
   return SITE_CUSTOM_THEME_ID;
 }
 

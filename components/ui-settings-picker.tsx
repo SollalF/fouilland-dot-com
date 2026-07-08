@@ -2,6 +2,7 @@
 
 import {
   Check,
+  GraduationCap,
   Moon,
   Palette,
   SlidersHorizontal,
@@ -299,7 +300,15 @@ export function UiSettingsPicker({ variant = "dock" }: UiSettingsPickerProps) {
               <PresetButton
                 key={id}
                 label={SITE_THEMES[id].label}
-                icon={id === "light" ? Sun : id === "dark" ? Moon : Terminal}
+                icon={
+                  id === "light"
+                    ? Sun
+                    : id === "dark"
+                      ? Moon
+                      : id === "polyu"
+                        ? GraduationCap
+                        : Terminal
+                }
                 selected={themeSelected(activeThemeId, id)}
                 onSelect={() => applyTheme(SITE_THEMES[id])}
               />
