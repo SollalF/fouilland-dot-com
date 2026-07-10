@@ -75,6 +75,7 @@ export const SITE_THEMES: Record<SitePresetThemeId, SiteTheme> = {
     },
     font: "ibm-plex-mono",
     shape: { radius: "none", borderWidth: "medium" },
+  },
   polyu: {
     id: "polyu",
     label: "PolyU",
