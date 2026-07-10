@@ -96,7 +96,6 @@ export function applySiteColors(colors: SiteColorValues): void {
   }
   root.style.removeProperty("--site-secondary");
   root.style.colorScheme = "light";
-  root.dataset.theme = "light";
   root.classList.remove("dark");
 }
 

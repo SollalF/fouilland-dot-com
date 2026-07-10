@@ -5,6 +5,7 @@ import {
   GraduationCap,
   Moon,
   Palette,
+  Rainbow,
   SlidersHorizontal,
   Sun,
   Terminal,
@@ -307,7 +308,9 @@ export function UiSettingsPicker({ variant = "dock" }: UiSettingsPickerProps) {
                       ? Moon
                       : id === "polyu"
                         ? GraduationCap
-                        : Terminal
+                        : id === "lgbtq+"
+                          ? Rainbow
+                          : Terminal
                 }
                 selected={themeSelected(activeThemeId, id)}
                 onSelect={() => applyTheme(SITE_THEMES[id])}

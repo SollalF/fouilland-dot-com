@@ -1,0 +1,149 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1920 1080" preserveAspectRatio="xMidYMid slice">
+  <defs>
+    <linearGradient id="skyGrad" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#4FC3F7"/>
+      <stop offset="60%" stop-color="#81D4FA"/>
+      <stop offset="100%" stop-color="#B3E5FC"/>
+    </linearGradient>
+    <linearGradient id="oceanGrad" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#0288D1"/>
+      <stop offset="100%" stop-color="#29B6F6"/>
+    </linearGradient>
+    <linearGradient id="sandGrad" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#F5DEB3"/>
+      <stop offset="100%" stop-color="#E6C288"/>
+    </linearGradient>
+    <filter id="shadow" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="3" dy="5" stdDeviation="4" flood-color="#000000" flood-opacity="0.2"/>
+    </filter>
+  </defs>
+
+  <!-- Sky -->
+  <rect width="1920" height="1080" fill="url(#skyGrad)"/>
+
+  <!-- Sun -->
+  <circle cx="1650" cy="140" r="90" fill="#FFD54F" opacity="0.9">
+    <animate attributeName="r" values="90;95;90" dur="4s" repeatCount="indefinite"/>
+  </circle>
+  <circle cx="1650" cy="140" r="70" fill="#FFECB3" opacity="0.6"/>
+
+  <!-- Clouds -->
+  <g fill="#FFFFFF" opacity="0.8">
+    <ellipse cx="300" cy="180" rx="80" ry="30"/>
+    <ellipse cx="360" cy="170" rx="60" ry="25"/>
+    <ellipse cx="250" cy="190" rx="50" ry="20"/>
+    
+    <ellipse cx="800" cy="120" rx="70" ry="25"/>
+    <ellipse cx="850" cy="110" rx="55" ry="20"/>
+    <ellipse cx="760" cy="130" rx="45" ry="18"/>
+    
+    <ellipse cx="1300" cy="220" rx="90" ry="32"/>
+    <ellipse cx="1370" cy="210" rx="65" ry="24"/>
+    <ellipse cx="1240" cy="230" rx="55" ry="20"/>
+  </g>
+
+  <!-- Ocean -->
+  <rect x="0" y="520" width="1920" height="320" fill="url(#oceanGrad)"/>
+  
+  <!-- Waves -->
+  <g fill="none" stroke="#4FC3F7" stroke-width="3" opacity="0.5">
+    <path d="M0,550 Q100,545 200,550 T400,550 T600,550 T800,550 T1000,550 T1200,550 T1400,550 T1600,550 T1800,550 T2000,550"/>
+    <path d="M0,580 Q100,575 200,580 T400,580 T600,580 T800,580 T1000,580 T1200,580 T1400,580 T1600,580 T1800,580 T2000,580"/>
+    <path d="M0,620 Q100,615 200,620 T400,620 T600,620 T800,620 T1000,620 T1200,620 T1400,620 T1600,620 T1800,620 T2000,620"/>
+    <path d="M0,660 Q100,655 200,660 T400,660 T600,660 T800,660 T1000,660 T1200,660 T1400,660 T1600,660 T1800,660 T2000,660"/>
+  </g>
+
+  <!-- Sand -->
+  <path d="M0,800 Q480,780 960,800 T1920,800 L1920,1080 L0,1080 Z" fill="url(#sandGrad)"/>
+
+  <!-- Sand texture dots -->
+  <g fill="#D4A76A" opacity="0.3">
+    <circle cx="200" cy="900" r="2"/>
+    <circle cx="350" cy="950" r="1.5"/>
+    <circle cx="500" cy="880" r="2"/>
+    <circle cx="650" cy="920" r="1.5"/>
+    <circle cx="800" cy="960" r="2"/>
+    <circle cx="950" cy="890" r="1.5"/>
+    <circle cx="1100" cy="940" r="2"/>
+    <circle cx="1250" cy="870" r="1.5"/>
+    <circle cx="1400" cy="910" r="2"/>
+    <circle cx="1550" cy="950" r="1.5"/>
+    <circle cx="1700" cy="880" r="2"/>
+    <circle cx="1850" cy="930" r="1.5"/>
+    <circle cx="100" cy="850" r="1.5"/>
+    <circle cx="450" cy="980" r="2"/>
+    <circle cx="700" cy="850" r="1.5"/>
+    <circle cx="1000" cy="990" r="2"/>
+    <circle cx="1300" cy="860" r="1.5"/>
+    <circle cx="1600" cy="980" r="2"/>
+  </g>
+
+  <!-- Starfish -->
+  <g transform="translate(600, 920)" fill="#FF6B6B">
+    <polygon points="0,-20 6,-6 20,-6 10,4 14,18 0,10 -14,18 -10,4 -20,-6 -6,-6"/>
+  </g>
+  <g transform="translate(1300, 880) scale(0.7)" fill="#FF8A80">
+    <polygon points="0,-20 6,-6 20,-6 10,4 14,18 0,10 -14,18 -10,4 -20,-6 -6,-6"/>
+  </g>
+
+  <!-- Beach ball -->
+  <g transform="translate(850, 950)">
+    <circle cx="0" cy="0" r="25" fill="#FFFFFF" filter="url(#shadow)"/>
+    <path d="M-25,0 A25,25 0 0,1 25,0" fill="#FF0018"/>
+    <path d="M25,0 A25,25 0 0,1 0,25" fill="#FFA52C"/>
+    <path d="M0,25 A25,25 0 0,1 -25,0" fill="#FFFF41"/>
+    <path d="M-25,0 A25,25 0 0,0 0,-25" fill="#008018"/>
+    <path d="M0,-25 A25,25 0 0,0 25,0" fill="#0000F9"/>
+    <circle cx="0" cy="0" r="25" fill="none" stroke="#E0E0E0" stroke-width="1"/>
+    <circle cx="8" cy="-8" r="4" fill="white" opacity="0.4"/>
+  </g>
+
+  <!-- Umbrella 1 - Rainbow stripes -->
+  <g transform="translate(400, 820)" filter="url(#shadow)">
+    <!-- Pole -->
+    <line x1="0" y1="0" x2="0" y2="180" stroke="#8D6E63" stroke-width="10" stroke-linecap="round"/>
+    <!-- Canopy -->
+    <path d="M-100,0 Q0,-100 100,0" fill="#FF0018"/>
+    <path d="M-100,0 Q-50,-50 0,0" fill="#FFA52C"/>
+    <path d="M0,0 Q50,-50 100,0" fill="#FFFF41"/>
+    <path d="M-80,0 Q-40,-40 0,0" fill="#008018"/>
+    <path d="M0,0 Q40,-40 80,0" fill="#0000F9"/>
+    <path d="M-60,0 Q-30,-30 0,0" fill="#86007D"/>
+    <path d="M0,0 Q30,-30 60,0" fill="#FF0018"/>
+    <!-- Top cap -->
+    <circle cx="0" cy="0" r="8" fill="#FF0018"/>
+  </g>
+
+  <!-- Umbrella 2 - Transgender flag colors -->
+  <g transform="translate(1400, 850)" filter="url(#shadow)">
+    <!-- Pole -->
+    <line x1="0" y1="0" x2="0" y2="170" stroke="#8D6E63" stroke-width="10" stroke-linecap="round"/>
+    <!-- Canopy -->
+    <path d="M-90,0 Q0,-90 90,0" fill="#5BCEFA"/>
+    <path d="M-90,0 Q-45,-45 0,0" fill="#F5A9B8"/>
+    <path d="M0,0 Q45,-45 90,0" fill="#FFFFFF"/>
+    <path d="M-70,0 Q-35,-35 0,0" fill="#F5A9B8"/>
+    <path d="M0,0 Q35,-35 70,0" fill="#5BCEFA"/>
+    <!-- Top cap -->
+    <circle cx="0" cy="0" r="7" fill="#5BCEFA"/>
+  </g>
+
+  <!-- Seagulls -->
+  <g fill="none" stroke="#424242" stroke-width="2" stroke-linecap="round">
+    <path d="M500,100 Q510,90 520,100 Q530,90 540,100"/>
+    <path d="M550,130 Q557,123 564,130 Q571,123 578,130"/>
+    <path d="M480,160 Q485,155 490,160 Q495,155 500,160"/>
+  </g>
+
+  <!-- Palm tree silhouette (small, in background) -->
+  <g transform="translate(100, 520)" fill="#4E342E">
+    <rect x="-8" y="0" width="16" height="200" rx="3"/>
+    <g transform="translate(0, 0)">
+      <ellipse cx="-40" cy="10" rx="45" ry="12" fill="#388E3C" transform="rotate(-30 -40 10)"/>
+      <ellipse cx="40" cy="10" rx="45" ry="12" fill="#388E3C" transform="rotate(30 40 10)"/>
+      <ellipse cx="0" cy="-35" rx="45" ry="12" fill="#388E3C" transform="rotate(0 0 -35)"/>
+      <ellipse cx="-30" cy="-20" rx="40" ry="10" fill="#388E3C" transform="rotate(-60 -30 -20)"/>
+      <ellipse cx="30" cy="-20" rx="40" ry="10" fill="#388E3C" transform="rotate(60 30 -20)"/>
+    </g>
+  </g>
+</svg>
