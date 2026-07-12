@@ -20,7 +20,7 @@ import {
   type SiteShapeValues,
 } from "./shape";
 
-export type SitePresetThemeId = "light" | "dark" | "hacker" | "polyu" | "lgbtq+";
+export type SitePresetThemeId = "light" | "dark" | "hacker" | "polyu";
 export type SiteThemeId = SitePresetThemeId | "custom";
 
 export const SITE_CUSTOM_THEME_ID = "custom" as const satisfies SiteThemeId;
@@ -87,17 +87,6 @@ export const SITE_THEMES: Record<SitePresetThemeId, SiteTheme> = {
     font: "inter",
     shape: { radius: "md", borderWidth: "thin" },
   },
-  "lgbtq+": {
-    id: "lgbtq+",
-    label: "LGBTQ+",
-    colors: {
-      primary: "#FF0018",
-      text: "#FFFFFF",
-      background: "#87CEEB",
-    },
-    font: "inter",
-    shape: { radius: "lg", borderWidth: "thin" },
-  },
 };
 
 export const DEFAULT_SITE_COLORS = SITE_THEMES.light.colors;
@@ -116,7 +105,6 @@ function isSiteThemeId(value: string | null): value is SiteThemeId {
     value === "dark" ||
     value === "hacker" ||
     value === "polyu" ||
-    value === "lgbtq+" ||
     value === "custom"
   );
 }
@@ -157,7 +145,6 @@ export function resolveActiveThemeId(): SiteThemeId {
   if (presetMatches(colors, font, shape, SITE_THEMES.dark)) return "dark";
   if (presetMatches(colors, font, shape, SITE_THEMES.hacker)) return "hacker";
   if (presetMatches(colors, font, shape, SITE_THEMES.polyu)) return "polyu";
-  if (presetMatches(colors, font, shape, SITE_THEMES["lgbtq+"])) return "lgbtq+";
   return SITE_CUSTOM_THEME_ID;
 }
 
@@ -188,11 +175,6 @@ export function isDarkLikeTheme(themeId: SiteThemeId): boolean {
   return isDarkColor(SITE_THEMES[themeId].colors.background);
 }
 
-export function setSiteThemeDataAttribute(themeId: SiteThemeId): void {
-  if (typeof document === "undefined") return;
-  document.documentElement.dataset.siteTheme = themeId;
-}
-
 export function applySiteThemePreset(theme: SiteTheme): SiteTheme {
   applySiteColors(theme.colors);
   applySiteFonts(theme.font);
@@ -201,7 +183,6 @@ export function applySiteThemePreset(theme: SiteTheme): SiteTheme {
   saveSiteFontConfig(theme.font);
   saveSiteShapeConfig(theme.shape);
   setActiveThemeId(theme.id);
-  setSiteThemeDataAttribute(theme.id);
   return theme;
 }
 
@@ -209,5 +190,4 @@ export function applySiteFromStorage(): void {
   applySiteColors(getSiteColorConfig());
   applySiteFonts(getSiteFontConfig());
   applySiteShape(getSiteShapeConfig());
-  setSiteThemeDataAttribute(resolveActiveThemeId());
 }

@@ -55,7 +55,6 @@ export {
   isDarkLikeTheme,
   resolveActiveThemeId,
   setActiveThemeId,
-  setSiteThemeDataAttribute,
   SITE_CUSTOM_THEME,
   SITE_CUSTOM_THEME_ID,
   SITE_THEME_ORDER,
