@@ -222,15 +222,22 @@
   --pride-green: #008026;
   --pride-blue: #004dff;
   --pride-purple: #750787;
-  --site-rainbow: linear-gradient(
+  --site-rainbow: repeating-linear-gradient(
     90deg,
-    var(--pride-red),
-    var(--pride-orange),
-    var(--pride-yellow),
-    var(--pride-green),
-    var(--pride-blue),
-    var(--pride-purple)
+    var(--pride-red) 0,
+    var(--pride-red) 16.666%,
+    var(--pride-orange) 16.666%,
+    var(--pride-orange) 33.333%,
+    var(--pride-yellow) 33.333%,
+    var(--pride-yellow) 50%,
+    var(--pride-green) 50%,
+    var(--pride-green) 66.666%,
+    var(--pride-blue) 66.666%,
+    var(--pride-blue) 83.333%,
+    var(--pride-purple) 83.333%,
+    var(--pride-purple) 100%
   );
+  --site-rainbow-size: 6ch 100%;
 }
 
 @layer utilities {
@@ -239,49 +246,40 @@
     border-style: var(--site-border-style);
   }
 
-  [data-site-preset="lgbt"] h1,
-  [data-site-preset="lgbt"] h2,
-  [data-site-preset="lgbt"] h3,
-  [data-site-preset="lgbt"] h4,
-  [data-site-preset="lgbt"] h5,
-  [data-site-preset="lgbt"] h6,
-  [data-site-preset="lgbt"] .prose-site :where(h1, h2, h3, h4, h5, h6) {
+  [data-site-preset="lgbt"] :is(
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6,
+    .prose-site :where(h1, h2, h3, h4, h5, h6)
+  ) {
     background-image: var(--site-rainbow);
-    background-size: 200% auto;
+    background-size: var(--site-rainbow-size);
+    background-position: 0 center;
     -webkit-background-clip: text;
     background-clip: text;
     color: transparent;
   }
 
-  [data-site-preset="lgbt"] a:not([class]) {
+  [data-site-preset="lgbt"] :is(a:not([class]), .prose-site :where(a)) {
     background-image: var(--site-rainbow);
-    background-size: 200% auto;
-    -webkit-background-clip: text;
-    background-clip: text;
-    color: transparent;
-    text-decoration-color: var(--pride-purple);
-  }
-
-  [data-site-preset="lgbt"] a:not([class]):hover {
-    animation: site-rainbow-shift 3s linear infinite;
-  }
-
-  [data-site-preset="lgbt"] .prose-site :where(a) {
-    background-image: var(--site-rainbow);
-    background-size: 200% auto;
+    background-size: var(--site-rainbow-size);
+    background-position: 0 center;
     -webkit-background-clip: text;
     background-clip: text;
     color: transparent;
     text-decoration-color: var(--pride-purple);
   }
 
-  [data-site-preset="lgbt"] .prose-site :where(a):hover {
+  [data-site-preset="lgbt"] :is(a:not([class]), .prose-site :where(a)):hover {
     animation: site-rainbow-shift 3s linear infinite;
   }
 
   @keyframes site-rainbow-shift {
     to {
-      background-position: 200% center;
+      background-position: 6ch center;
     }
   }
 
