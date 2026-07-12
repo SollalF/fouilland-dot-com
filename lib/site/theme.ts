@@ -20,7 +20,12 @@ import {
   type SiteShapeValues,
 } from "./shape";
 
-export type SitePresetThemeId = "light" | "dark" | "hacker" | "polyu";
+export type SitePresetThemeId =
+  | "light"
+  | "dark"
+  | "hacker"
+  | "polyu"
+  | "lgbt";
 export type SiteThemeId = SitePresetThemeId | "custom";
 
 export const SITE_CUSTOM_THEME_ID = "custom" as const satisfies SiteThemeId;
@@ -87,6 +92,17 @@ export const SITE_THEMES: Record<SitePresetThemeId, SiteTheme> = {
     font: "inter",
     shape: { radius: "md", borderWidth: "thin" },
   },
+  lgbt: {
+    id: "lgbt",
+    label: "LGBT",
+    colors: {
+      primary: "#750787",
+      text: "#F8F5FF",
+      background: "#14061C",
+    },
+    font: "inter",
+    shape: { radius: "lg", borderWidth: "thin" },
+  },
 };
 
 export const DEFAULT_SITE_COLORS = SITE_THEMES.light.colors;
@@ -105,8 +121,20 @@ function isSiteThemeId(value: string | null): value is SiteThemeId {
     value === "dark" ||
     value === "hacker" ||
     value === "polyu" ||
+    value === "lgbt" ||
     value === "custom"
   );
+}
+
+function applySitePresetDataAttribute(themeId: SiteThemeId): void {
+  if (typeof document === "undefined") return;
+
+  if (themeId === SITE_CUSTOM_THEME_ID) {
+    delete document.documentElement.dataset.sitePreset;
+    return;
+  }
+
+  document.documentElement.dataset.sitePreset = themeId;
 }
 
 function presetMatches(
@@ -145,6 +173,7 @@ export function resolveActiveThemeId(): SiteThemeId {
   if (presetMatches(colors, font, shape, SITE_THEMES.dark)) return "dark";
   if (presetMatches(colors, font, shape, SITE_THEMES.hacker)) return "hacker";
   if (presetMatches(colors, font, shape, SITE_THEMES.polyu)) return "polyu";
+  if (presetMatches(colors, font, shape, SITE_THEMES.lgbt)) return "lgbt";
   return SITE_CUSTOM_THEME_ID;
 }
 
@@ -152,6 +181,7 @@ export function setActiveThemeId(themeId: SiteThemeId): void {
   if (typeof window === "undefined") return;
 
   localStorage.setItem(THEME_ID_STORAGE_KEY, themeId);
+  applySitePresetDataAttribute(themeId);
 
   window.dispatchEvent(
     new CustomEvent<SiteThemeChangeDetail>("site-theme-change", {
@@ -190,4 +220,5 @@ export function applySiteFromStorage(): void {
   applySiteColors(getSiteColorConfig());
   applySiteFonts(getSiteFontConfig());
   applySiteShape(getSiteShapeConfig());
+  applySitePresetDataAttribute(resolveActiveThemeId());
 }

@@ -215,10 +215,74 @@
   }
 }
 
+[data-site-preset="lgbt"] {
+  --pride-red: #e40303;
+  --pride-orange: #ff8c00;
+  --pride-yellow: #ffed00;
+  --pride-green: #008026;
+  --pride-blue: #004dff;
+  --pride-purple: #750787;
+  --site-rainbow: linear-gradient(
+    90deg,
+    var(--pride-red),
+    var(--pride-orange),
+    var(--pride-yellow),
+    var(--pride-green),
+    var(--pride-blue),
+    var(--pride-purple)
+  );
+}
+
 @layer utilities {
   .border {
     border-width: var(--site-border-width);
     border-style: var(--site-border-style);
+  }
+
+  [data-site-preset="lgbt"] h1,
+  [data-site-preset="lgbt"] h2,
+  [data-site-preset="lgbt"] h3,
+  [data-site-preset="lgbt"] h4,
+  [data-site-preset="lgbt"] h5,
+  [data-site-preset="lgbt"] h6,
+  [data-site-preset="lgbt"] .prose-site :where(h1, h2, h3, h4, h5, h6) {
+    background-image: var(--site-rainbow);
+    background-size: 200% auto;
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
+
+  [data-site-preset="lgbt"] a:not([class]) {
+    background-image: var(--site-rainbow);
+    background-size: 200% auto;
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    text-decoration-color: var(--pride-purple);
+  }
+
+  [data-site-preset="lgbt"] a:not([class]):hover {
+    animation: site-rainbow-shift 3s linear infinite;
+  }
+
+  [data-site-preset="lgbt"] .prose-site :where(a) {
+    background-image: var(--site-rainbow);
+    background-size: 200% auto;
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    text-decoration-color: var(--pride-purple);
+  }
+
+  [data-site-preset="lgbt"] .prose-site :where(a):hover {
+    animation: site-rainbow-shift 3s linear infinite;
+  }
+
+  @keyframes site-rainbow-shift {
+    to {
+      background-position: 200% center;
+    }
   }
 
   .prose-site {
