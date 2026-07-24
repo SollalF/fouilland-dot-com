@@ -2,8 +2,7 @@ import { Metadata } from "next";
 import Image from "next/image";
 import { Badge } from "@/components/ui/badge";
 import { projectDetails } from "./project-details";
-import { SiteMarkdown } from "@/components/site-markdown";
-import { fetchReadmeFromGitHub } from "@/lib/github-utils";
+import { ProjectReadmeSection } from "@/components/project-readme-section";
 
 export const metadata: Metadata = {
   title: projectDetails?.title || "AI Newsletter",
@@ -12,9 +11,7 @@ export const metadata: Metadata = {
     "A personalized AI-powered newsletter platform",
 };
 
-export default async function AINewsletter() {
-  // Default content in case anything fails
-  let readmeContent = "Loading README content...";
+export default function AINewsletter() {
   const safeDetails = projectDetails || {
     title: "AI Newsletter",
     description: "A personalized AI-powered newsletter platform",
@@ -24,23 +21,6 @@ export default async function AINewsletter() {
     githubUrl: "",
     liveUrl: "",
   };
-
-  try {
-    // Extract owner and repo from GitHub URL
-    if (safeDetails.githubUrl) {
-      const urlParts = safeDetails.githubUrl.split("/");
-      if (urlParts.length >= 2) {
-        const owner = urlParts[urlParts.length - 2] || "SollalF";
-        const repo =
-          urlParts[urlParts.length - 1]?.replace(".git", "") || "daily-news";
-        // Fetch README content
-        readmeContent = await fetchReadmeFromGitHub(owner, repo);
-      }
-    }
-  } catch (error) {
-    console.error("Error in AINewsletter component:", error);
-    readmeContent = "Error loading README content. Please try again later.";
-  }
 
   return (
     <main className="container mx-auto px-4 py-8 max-w-4xl relative">
@@ -99,7 +79,7 @@ export default async function AINewsletter() {
         </div>
       </div>
 
-      <SiteMarkdown className="py-8">{readmeContent}</SiteMarkdown>
+      <ProjectReadmeSection githubUrl={safeDetails.githubUrl} />
     </main>
   );
 }

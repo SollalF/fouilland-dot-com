@@ -1,6 +1,8 @@
+"use client";
+
 import { Dock, DockIcon } from "@/components/magicui/dock";
 import { ModeToggle } from "@/components/mode-toggle";
-import { UiSettingsPicker } from "@/components/ui-settings-picker";
+import { UiSettingsPickerLazy } from "@/components/ui-settings-picker-lazy";
 import { buttonVariants } from "@/components/ui/button";
 import { Separator } from "@/components/ui/separator";
 import {
@@ -62,7 +64,7 @@ export default function Navbar() {
           ))}
         <Separator orientation="vertical" className="h-full py-2" />
         <DockIcon size={48}>
-          <UiSettingsPicker />
+          <UiSettingsPickerLazy />
         </DockIcon>
         <DockIcon size={48}>
           <Tooltip>

@@ -24,7 +24,7 @@ import {
   TooltipTrigger,
 } from "@radix-ui/react-tooltip";
 import { ModeToggle } from "./mode-toggle";
-import { UiSettingsPicker } from "@/components/ui-settings-picker";
+import { UiSettingsPickerLazy } from "@/components/ui-settings-picker-lazy";
 import { siteConfig } from "@/data/site";
 import Image from "next/image";
 // This is sample data.
@@ -90,7 +90,9 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
       <SidebarRail />
       <SidebarFooter>
         <div className="flex items-center gap-1">
-          {state === "expanded" ? <UiSettingsPicker variant="sidebar" /> : null}
+          {state === "expanded" ? (
+            <UiSettingsPickerLazy variant="sidebar" />
+          ) : null}
           <Tooltip>
             <TooltipTrigger asChild>
               <ModeToggle />

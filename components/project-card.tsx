@@ -7,18 +7,14 @@ import {
   CardHeader,
   CardTitle,
   CardDescription,
-  CardFooter,
 } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import Link from "next/link";
-import { Project } from "@/app/projects/types";
+import { ProjectCardData } from "@/app/projects/types";
 import { cn } from "@/lib/utils";
-import { InfoIcon, GlobeIcon } from "lucide-react";
-import { CIcon } from "@coreui/icons-react";
-import { cibGithub } from "@coreui/icons";
 
 interface Props {
-  project: Project;
+  project: ProjectCardData;
   className?: string;
 }
 

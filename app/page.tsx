@@ -1,14 +1,13 @@
-"use client";
-
 import { HackathonCard } from "@/components/hackathon-card";
 import { BlurFade } from "@/components/magicui/blur-fade";
 import BlurFadeText from "@/components/magicui/blur-fade-text";
 import { ProjectCard } from "@/components/project-card";
+import { toProjectCardData } from "@/app/projects/types";
 import { ResumeCard } from "@/components/resume-card";
+import { SiteMarkdown } from "@/components/site-markdown";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { DATA } from "@/data/resume";
 import Link from "next/link";
-import Markdown from "react-markdown";
 import { projects } from "@/app/projects";
 import Navbar from "@/components/navbar";
 import { SkillsSection } from "@/components/skills-section";
@@ -68,9 +67,9 @@ export default function Page() {
           </h2>
         </BlurFade>
         <BlurFade delay={BLUR_FADE_DELAY * 4}>
-          <div className="prose max-w-full text-pretty font-sans text-sm text-muted-foreground">
-            <Markdown>{DATA.summary}</Markdown>
-          </div>
+          <SiteMarkdown className="prose max-w-full text-pretty font-sans text-sm text-muted-foreground">
+            {DATA.summary}
+          </SiteMarkdown>
         </BlurFade>
       </section>
       <section id="work">
@@ -147,7 +146,7 @@ export default function Page() {
                 key={project.title}
                 delay={BLUR_FADE_DELAY * 12 + id * 0.05}
               >
-                <ProjectCard project={project} />
+                <ProjectCard project={toProjectCardData(project)} />
               </BlurFade>
             ))}
           </div>

@@ -4,26 +4,11 @@ import Script from "next/script";
 import { Badge } from "@/components/ui/badge";
 import { projectDetails } from "./project-details";
 import CrtDemoWrapper from "./crt-demo-wrapper";
+import CrtInspirationVideo from "./crt-inspiration-video";
+import CrtSamplingComparison from "./crt-sampling-comparison";
 import fs from "fs";
 import path from "path";
 import { Monitor, ImageIcon, Video, ExternalLink } from "lucide-react";
-import {
-  VideoPlayer,
-  VideoPlayerContent,
-  VideoPlayerControlBar,
-  VideoPlayerPlayButton,
-  VideoPlayerSeekBackwardButton,
-  VideoPlayerSeekForwardButton,
-  VideoPlayerTimeRange,
-  VideoPlayerTimeDisplay,
-  VideoPlayerMuteButton,
-  VideoPlayerVolumeRange,
-} from "@/components/ui/shadcn-io/video-player";
-import {
-  Comparison,
-  ComparisonItem,
-  ComparisonHandle,
-} from "@/components/ui/shadcn-io/comparison";
 
 export const metadata: Metadata = {
   title: projectDetails.title,
@@ -135,39 +120,7 @@ export default function CrtSubpixelPage() {
             (and black).
           </p>
 
-          <div className="my-8 not-prose flex flex-col items-center">
-            <VideoPlayer className="overflow-hidden rounded-lg border w-full max-w-4xl">
-              <VideoPlayerContent
-                crossOrigin=""
-                muted
-                autoPlay
-                preload="auto"
-                slot="media"
-                className="w-full h-auto max-h-[400px]"
-                src="https://packaged-media.redd.it/5v34zzb3444g1/pb/m2-res_854p.mp4?m=DASHPlaylist.mpd&v=1&e=1767524400&s=4e102f003fd17ce4fe7127e46215ed167bb948d5"
-              />
-              <VideoPlayerControlBar>
-                <VideoPlayerPlayButton />
-                <VideoPlayerSeekBackwardButton />
-                <VideoPlayerSeekForwardButton />
-                <VideoPlayerTimeRange />
-                <VideoPlayerTimeDisplay showDuration />
-                <VideoPlayerMuteButton />
-                <VideoPlayerVolumeRange />
-              </VideoPlayerControlBar>
-            </VideoPlayer>
-            <p className="text-center text-sm text-muted-foreground mt-2">
-              Video: Alex_DiP subpixel painting demo{" "}
-              <a
-                href="https://www.reddit.com/user/Alex_DiP/"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="hover:underline inline-flex items-center gap-1"
-              >
-                View on Reddit <ExternalLink className="w-3 h-3" />
-              </a>
-            </p>
-          </div>
+          <CrtInspirationVideo />
 
           <p>
             I&apos;ve always liked learning about{" "}
@@ -593,42 +546,7 @@ export default function CrtSubpixelPage() {
             need to access the value of one pixel from memory.
           </p>
 
-          <div className="my-8 not-prose">
-            <div className="w-full rounded-lg overflow-hidden border">
-              <Comparison className="aspect-video">
-                <ComparisonItem position="left">
-                  <Image
-                    src="/projects/crt-subpixel/test-image.jpg"
-                    alt="Original test image"
-                    fill
-                    className="object-cover"
-                    unoptimized
-                  />
-                </ComparisonItem>
-                <ComparisonItem position="right">
-                  <Image
-                    src="/projects/crt-subpixel/test-image-subsampled.png"
-                    alt="Subsampled test image showing pixelation effect"
-                    fill
-                    className="object-cover"
-                    unoptimized
-                  />
-                </ComparisonItem>
-                <ComparisonHandle />
-              </Comparison>
-            </div>
-            <p className="text-center text-sm text-muted-foreground mt-2">
-              Example: Pixelation effect at different sampling rates{" "}
-              <a
-                href="https://fr.pinterest.com/pin/3166662233351865/"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="hover:underline inline-flex items-center gap-1"
-              >
-                Source <ExternalLink className="w-3 h-3" />
-              </a>
-            </p>
-          </div>
+          <CrtSamplingComparison />
 
           <p>
             Note that because of the compression, especially at low resolutions,
