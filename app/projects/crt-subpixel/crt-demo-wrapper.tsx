@@ -8,7 +8,7 @@ const CrtDemo = dynamic(() => import("./crt-demo"), {
   ssr: false,
   loading: () => (
     <div className="w-full h-full flex items-center justify-center rounded-lg">
-      <span className="animate-pulse">Loading demo...</span>
+      <span className="animate-pulse">Loading demo…</span>
     </div>
   ),
 });

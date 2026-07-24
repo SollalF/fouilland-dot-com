@@ -60,8 +60,9 @@ export function ModeToggle() {
         size="icon"
         className="px-2"
         disabled
+        aria-label="Loading theme"
       >
-        <Sun className={iconClassName} />
+        <Sun className={iconClassName} aria-hidden="true" />
       </Button>
     );
   }
@@ -81,11 +82,11 @@ export function ModeToggle() {
       aria-label={ariaLabel}
     >
       {isCustom ? (
-        <Palette className={iconClassName} />
+        <Palette className={iconClassName} aria-hidden="true" />
       ) : isDarkLike ? (
-        <Sun className={iconClassName} />
+        <Sun className={iconClassName} aria-hidden="true" />
       ) : (
-        <Moon className={iconClassName} />
+        <Moon className={iconClassName} aria-hidden="true" />
       )}
     </Button>
   );

@@ -68,7 +68,7 @@ export function ProjectCard({ project, className }: Props) {
               src={imageUrl}
               alt={title}
               fill
-              className="object-cover transition-transform duration-300 group-hover:scale-105"
+              className="object-cover transition-transform duration-300 group-hover:scale-105 motion-reduce:transition-none motion-reduce:group-hover:scale-100"
             />
             <div className="absolute inset-0 bg-black/60" />
           </div>
@@ -79,7 +79,7 @@ export function ProjectCard({ project, className }: Props) {
             src={imageUrl}
             alt={title}
             fill
-            className="object-cover transition-transform duration-300 group-hover:scale-105"
+            className="object-cover transition-transform duration-300 group-hover:scale-105 motion-reduce:transition-none motion-reduce:group-hover:scale-100"
           />
           <div className="absolute inset-0 bg-black/60" />
         </div>
@@ -114,7 +114,7 @@ export function ProjectCard({ project, className }: Props) {
         href={cardActionHref}
         target={cardActionTarget}
         transitionTypes={transitionTypes}
-        className="absolute inset-0 z-20"
+        className="absolute inset-0 z-20 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-inset"
         aria-label={cardAriaLabel}
         rel={cardActionTarget === "_blank" ? "noopener noreferrer" : undefined}
       >

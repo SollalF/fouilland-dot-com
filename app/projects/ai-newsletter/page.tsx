@@ -26,9 +26,11 @@ export default function AINewsletter() {
 
   return (
     <DirectionalTransition>
-      <main className="container mx-auto px-4 py-8 max-w-4xl relative">
+      <article className="container mx-auto px-4 py-8 max-w-4xl relative">
         <div className="flex flex-col items-center space-y-8 relative">
-          <h1 className="text-4xl font-bold text-center">{safeDetails.title}</h1>
+          <h1 className="text-4xl font-bold text-center text-balance">
+            {safeDetails.title}
+          </h1>
 
           <ProjectHeroImage
             projectSlug={safeDetails.projectSlug}
@@ -77,7 +79,7 @@ export default function AINewsletter() {
         </div>
 
         <ProjectReadmeSection githubUrl={safeDetails.githubUrl} />
-      </main>
+      </article>
     </DirectionalTransition>
   );
 }

@@ -7,8 +7,10 @@ import { DirectionalTransition } from "@/components/directional-transition";
 export default function Projects() {
   return (
     <DirectionalTransition>
-      <main className="container mx-auto px-4 py-8">
-        <h1 className="text-4xl font-bold mb-8 text-center">My Projects</h1>
+      <div className="container mx-auto px-4 py-8">
+        <h1 className="text-4xl font-bold mb-8 text-center text-balance">
+          My Projects
+        </h1>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {projects.map((project) => (
             <ViewTransition key={project.projectSlug}>
@@ -16,7 +18,7 @@ export default function Projects() {
             </ViewTransition>
           ))}
         </div>
-      </main>
+      </div>
     </DirectionalTransition>
   );
 }

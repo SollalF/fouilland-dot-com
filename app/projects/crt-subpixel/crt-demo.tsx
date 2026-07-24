@@ -285,17 +285,20 @@ export default function CrtDemo() {
           <div className="flex gap-2">
             <input
               ref={fileInputRef}
+              id="crt-image-upload"
               type="file"
               accept="image/*"
               onChange={handleImageUpload}
-              className="hidden"
+              className="sr-only"
+              aria-label="Upload image for CRT demo"
             />
             <Button
               onClick={() => fileInputRef.current?.click()}
               variant="outline"
               className="flex-1"
+              type="button"
             >
-              <Upload className="w-4 h-4 mr-2" />
+              <Upload className="w-4 h-4 mr-2" aria-hidden="true" />
               Upload Image
             </Button>
             {hasImage && (

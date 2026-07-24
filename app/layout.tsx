@@ -1,8 +1,9 @@
 import { SiteThemeProvider } from "@/components/site-theme-provider";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { DATA } from "@/data/resume";
+import { DEFAULT_SITE_COLORS } from "@/lib/site";
 import { cn } from "@/lib/utils";
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import { Inter as FontSans } from "next/font/google";
 import "./globals.css";
 import "@coreui/icons/css/all.min.css";
@@ -10,6 +11,7 @@ import "@coreui/icons/css/all.min.css";
 const fontSans = FontSans({
   subsets: ["latin"],
   variable: "--font-inter",
+  display: "swap",
 });
 
 export const metadata: Metadata = {
@@ -48,6 +50,12 @@ export const metadata: Metadata = {
   },
 };
 
+export const viewport: Viewport = {
+  themeColor: DEFAULT_SITE_COLORS.background,
+  width: "device-width",
+  initialScale: 1,
+};
+
 export default function RootLayout({
   children,
 }: Readonly<{
@@ -56,6 +64,12 @@ export default function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning>
       <body className={cn(fontSans.variable)}>
+        <a
+          href="#main-content"
+          className="sr-only focus:not-sr-only focus:absolute focus:left-4 focus:top-4 focus:z-[100] focus:rounded-md focus:bg-background focus:px-4 focus:py-2 focus:text-foreground focus:ring-2 focus:ring-ring"
+        >
+          Skip to main content
+        </a>
         <SiteThemeProvider>
           <TooltipProvider delayDuration={0}>{children}</TooltipProvider>
         </SiteThemeProvider>

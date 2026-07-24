@@ -136,7 +136,10 @@ function RoleColorPicker({
                 aria-label={`${preset.label} preset`}
               >
                 {colorsMatch(value, preset.color) && (
-                  <Check className="size-4 text-white drop-shadow-sm" />
+                  <Check
+                    aria-hidden="true"
+                    className="size-4 text-white drop-shadow-sm"
+                  />
                 )}
               </button>
             </TooltipTrigger>
@@ -282,7 +285,7 @@ export function UiSettingsPicker({ variant = "dock" }: UiSettingsPickerProps) {
     <PopoverContent
       side={variant === "sidebar" ? "right" : "top"}
       align={variant === "sidebar" ? "start" : "center"}
-      className="mx-4 w-80"
+      className="mx-4 w-80 overscroll-contain"
       sideOffset={variant === "sidebar" ? 8 : 16}
       onOpenAutoFocus={(event) => event.preventDefault()}
     >
@@ -403,7 +406,7 @@ export function UiSettingsPicker({ variant = "dock" }: UiSettingsPickerProps) {
       className={variant === "sidebar" ? "px-2" : "size-12 px-2"}
       disabled={!mounted}
     >
-      <SlidersHorizontal className={iconClassName} />
+      <SlidersHorizontal className={iconClassName} aria-hidden="true" />
       <span className="sr-only">UI settings</span>
     </Button>
   );

@@ -18,7 +18,7 @@ interface SkillCategoryProps {
 
 export function SkillCategory({ title, skills, icon }: SkillCategoryProps) {
   return (
-    <Card className="rounded-xl border bg-card text-card-foreground shadow-sm transition-all hover:shadow-md">
+    <Card className="rounded-xl border bg-card text-card-foreground shadow-sm transition-[box-shadow] hover:shadow-md">
       <CardHeader className="flex flex-col space-y-1.5 p-6 pb-2">
         <h3 className="tracking-tight text-2xl font-bold uppercase md:text-3xl">
           {title}

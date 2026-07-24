@@ -95,9 +95,11 @@ export function applySiteColors(colors: SiteColorValues): void {
     root.style.setProperty(`--site-${role}`, normalized[role]);
   }
   root.style.removeProperty("--site-secondary");
-  root.style.colorScheme = "light";
-  root.dataset.theme = "light";
-  root.classList.remove("dark");
+
+  const darkLike = isDarkColor(normalized.background);
+  root.style.colorScheme = darkLike ? "dark" : "light";
+  root.dataset.theme = darkLike ? "dark" : "light";
+  root.classList.toggle("dark", darkLike);
 }
 
 function normalizeStoredColors(

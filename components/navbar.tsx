@@ -39,12 +39,13 @@ export default function Navbar() {
                 <TransitionLink
                   href={item.href}
                   transitionTypes={navTransitionTypes(item.href)}
+                  aria-label={item.label}
                   className={cn(
                     buttonVariants({ variant: "ghost", size: "icon" }),
                     "size-12",
                   )}
                 >
-                  <item.icon className="size-4" />
+                  <item.icon className="size-4" aria-hidden="true" />
                 </TransitionLink>
               </TooltipTrigger>
               <TooltipContent>
@@ -62,12 +63,13 @@ export default function Navbar() {
                 <TooltipTrigger asChild>
                   <TransitionLink
                     href={social.url}
+                    aria-label={name}
                     className={cn(
                       buttonVariants({ variant: "ghost", size: "icon" }),
                       "size-12",
                     )}
                   >
-                    <social.icon className="size-4" />
+                    <social.icon className="size-4" aria-hidden="true" />
                   </TransitionLink>
                 </TooltipTrigger>
                 <TooltipContent>

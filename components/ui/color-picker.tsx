@@ -12,6 +12,7 @@ import {
 } from "react";
 import { RgbaColorPicker, type RgbaColor } from "react-colorful";
 import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
 import {
   Popover,
   PopoverContent,
@@ -144,20 +145,38 @@ export function ColorPicker({
             className="!w-full aspect-square"
           />
           <div className="flex w-full items-center gap-2">
-            <span className="shrink-0 text-xs font-medium uppercase">Hex</span>
+            <Label
+              htmlFor="color-picker-hex"
+              className="shrink-0 text-xs font-medium uppercase"
+            >
+              Hex
+            </Label>
             <Input
+              id="color-picker-hex"
+              name="color-hex"
+              autoComplete="off"
+              spellCheck={false}
               className="rounded-r-none tracking-widest"
               value={color.hex}
               onChange={handleChangeColor}
+              aria-label="Hex color"
             />
+            <Label htmlFor="color-picker-alpha" className="sr-only">
+              Alpha
+            </Label>
             <Input
+              id="color-picker-alpha"
+              name="color-alpha"
               type="number"
+              inputMode="decimal"
+              autoComplete="off"
               min={0}
               max={1}
               step={0.01}
               value={color.alpha.toFixed(2)}
               onChange={handleChangeAlpha}
               className="w-16 rounded-l-none px-2"
+              aria-label="Alpha"
             />
           </div>
         </div>
