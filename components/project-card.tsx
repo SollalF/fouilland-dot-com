@@ -1,6 +1,7 @@
 "use client";
 
 import Image from "next/image";
+import { ViewTransition } from "react";
 import {
   Card,
   CardContent,
@@ -9,7 +10,7 @@ import {
   CardDescription,
 } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
-import Link from "next/link";
+import { TransitionLink } from "@/components/transition-link";
 import { ProjectCardData } from "@/app/projects/types";
 import { cn } from "@/lib/utils";
 
@@ -32,11 +33,13 @@ export function ProjectCard({ project, className }: Props) {
   let cardActionHref = "#";
   let cardActionTarget: string | undefined = undefined;
   let cardAriaLabel = `View project ${title}`;
+  let transitionTypes: string[] | undefined;
 
   if (projectSlug) {
     cardActionHref = `/projects/${projectSlug}`;
     cardActionTarget = undefined;
     cardAriaLabel = `View details for ${title}`;
+    transitionTypes = ["nav-forward"];
   } else if (liveUrl) {
     cardActionHref = liveUrl;
     cardActionTarget = "_blank";
@@ -54,15 +57,33 @@ export function ProjectCard({ project, className }: Props) {
         className,
       )}
     >
-      <div className="absolute inset-0 z-0">
-        <Image
-          src={imageUrl}
-          alt={title}
-          fill
-          className="object-cover transition-transform duration-300 group-hover:scale-105"
-        />
-        <div className="absolute inset-0 bg-black/60" />
-      </div>
+      {projectSlug ? (
+        <ViewTransition
+          name={`project-image-${projectSlug}`}
+          share="morph"
+          default="none"
+        >
+          <div className="absolute inset-0 z-0">
+            <Image
+              src={imageUrl}
+              alt={title}
+              fill
+              className="object-cover transition-transform duration-300 group-hover:scale-105"
+            />
+            <div className="absolute inset-0 bg-black/60" />
+          </div>
+        </ViewTransition>
+      ) : (
+        <div className="absolute inset-0 z-0">
+          <Image
+            src={imageUrl}
+            alt={title}
+            fill
+            className="object-cover transition-transform duration-300 group-hover:scale-105"
+          />
+          <div className="absolute inset-0 bg-black/60" />
+        </div>
+      )}
 
       <div className="relative z-10 flex flex-col flex-grow justify-end p-6 text-white">
         <CardHeader className="p-0 mb-2">
@@ -73,7 +94,7 @@ export function ProjectCard({ project, className }: Props) {
         </CardHeader>
 
         <CardContent className="p-0 flex-grow">
-          {tags && tags.length > 0 && (
+          {tags && tags.length > 0 ? (
             <div className="flex flex-wrap gap-1 mt-3">
               {tags.map((tag, tagIndex) => (
                 <Badge
@@ -85,19 +106,20 @@ export function ProjectCard({ project, className }: Props) {
                 </Badge>
               ))}
             </div>
-          )}
+          ) : null}
         </CardContent>
       </div>
 
-      <Link
+      <TransitionLink
         href={cardActionHref}
         target={cardActionTarget}
+        transitionTypes={transitionTypes}
         className="absolute inset-0 z-20"
         aria-label={cardAriaLabel}
         rel={cardActionTarget === "_blank" ? "noopener noreferrer" : undefined}
       >
         <span className="sr-only">{cardAriaLabel}</span>
-      </Link>
+      </TransitionLink>
     </Card>
   );
 }

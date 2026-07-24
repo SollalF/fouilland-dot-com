@@ -1,4 +1,4 @@
-import { Suspense } from "react";
+import { Suspense, ViewTransition } from "react";
 import { SiteMarkdown } from "@/components/site-markdown";
 import { fetchReadmeFromGitHub } from "@/lib/github-utils";
 
@@ -29,7 +29,11 @@ async function ProjectReadme({ githubUrl }: { githubUrl: string }) {
     readmeContent = "Error loading README content. Please try again later.";
   }
 
-  return <SiteMarkdown className="py-8">{readmeContent}</SiteMarkdown>;
+  return (
+    <ViewTransition enter="slide-up" default="none">
+      <SiteMarkdown className="py-8">{readmeContent}</SiteMarkdown>
+    </ViewTransition>
+  );
 }
 
 type ProjectReadmeSectionProps = {
@@ -37,8 +41,7 @@ type ProjectReadmeSectionProps = {
 };
 
 /**
- * Streams README content behind Suspense so the project shell can paint first
- * (async-suspense-boundaries).
+ * Streams README content behind Suspense with a slide-up reveal.
  */
 export function ProjectReadmeSection({ githubUrl }: ProjectReadmeSectionProps) {
   if (!githubUrl) {
@@ -50,7 +53,13 @@ export function ProjectReadmeSection({ githubUrl }: ProjectReadmeSectionProps) {
   }
 
   return (
-    <Suspense fallback={<ReadmeSkeleton />}>
+    <Suspense
+      fallback={
+        <ViewTransition exit="slide-down">
+          <ReadmeSkeleton />
+        </ViewTransition>
+      }
+    >
       <ProjectReadme githubUrl={githubUrl} />
     </Suspense>
   );

@@ -6,8 +6,10 @@ import { toProjectCardData } from "@/app/projects/types";
 import { ResumeCard } from "@/components/resume-card";
 import { SiteMarkdown } from "@/components/site-markdown";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
+import { DirectionalTransition } from "@/components/directional-transition";
 import { DATA } from "@/data/resume";
 import Link from "next/link";
+import { ViewTransition } from "react";
 import { projects } from "@/app/projects";
 import Navbar from "@/components/navbar";
 import { SkillsSection } from "@/components/skills-section";
@@ -31,7 +33,8 @@ const hackathons: Hackathon[] = [];
 
 export default function Page() {
   return (
-    <main className="flex flex-col min-h-[100dvh] space-y-10 bg-background font-sans antialiased max-w-2xl mx-auto py-12 sm:py-24 px-6">
+    <DirectionalTransition>
+      <main className="flex flex-col min-h-[100dvh] space-y-10 bg-background font-sans antialiased max-w-2xl mx-auto py-12 sm:py-24 px-6">
       <section id="hero">
         <div className="mx-auto w-full max-w-2xl space-y-8">
           <div className="gap-2 flex justify-between">
@@ -142,12 +145,11 @@ export default function Page() {
           </BlurFade>
           <div className="grid grid-cols-1 gap-3 sm:grid-cols-2 max-w-[800px] mx-auto">
             {projects.map((project, id) => (
-              <BlurFade
-                key={project.title}
-                delay={BLUR_FADE_DELAY * 12 + id * 0.05}
-              >
-                <ProjectCard project={toProjectCardData(project)} />
-              </BlurFade>
+              <ViewTransition key={project.projectSlug}>
+                <BlurFade delay={BLUR_FADE_DELAY * 12 + id * 0.05}>
+                  <ProjectCard project={toProjectCardData(project)} />
+                </BlurFade>
+              </ViewTransition>
             ))}
           </div>
         </div>
@@ -223,6 +225,7 @@ export default function Page() {
         </div>
       </section>
       <Navbar />
-    </main>
+      </main>
+    </DirectionalTransition>
   );
 }

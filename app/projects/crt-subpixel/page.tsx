@@ -9,6 +9,8 @@ import CrtSamplingComparison from "./crt-sampling-comparison";
 import fs from "fs";
 import path from "path";
 import { Monitor, ImageIcon, Video, ExternalLink } from "lucide-react";
+import { DirectionalTransition } from "@/components/directional-transition";
+import { ProjectHeroImage } from "@/components/project-hero-image";
 
 export const metadata: Metadata = {
   title: projectDetails.title,
@@ -21,6 +23,7 @@ export default function CrtSubpixelPage() {
   const imageExists = fs.existsSync(imagePath);
 
   return (
+    <DirectionalTransition>
     <main className="container mx-auto px-4 py-8 max-w-4xl relative">
       <div className="flex flex-col items-center space-y-8 relative">
         <h1 className="text-4xl font-bold text-center">
@@ -29,23 +32,23 @@ export default function CrtSubpixelPage() {
 
         {/* Image Section */}
         <div className="w-full">
-          <div className="w-full relative h-[400px]">
-            {imageExists ? (
-              <Image
-                src={projectDetails.imageUrl}
-                alt={projectDetails.title}
-                fill
-                className="object-cover rounded-lg"
-              />
-            ) : (
+          {imageExists ? (
+            <ProjectHeroImage
+              projectSlug={projectDetails.projectSlug}
+              imageUrl={projectDetails.imageUrl}
+              alt={projectDetails.title}
+              className="w-full h-[400px] rounded-lg"
+            />
+          ) : (
+            <div className="w-full relative h-[400px]">
               <div className="w-full h-full rounded-lg flex items-center justify-center">
                 <div className="text-center">
                   <Monitor className="w-24 h-24 mx-auto mb-4" />
                   <p className="text-sm">Project image coming soon</p>
                 </div>
               </div>
-            )}
-          </div>
+            </div>
+          )}
           {imageExists && (
             <p className="text-center text-sm text-muted-foreground mt-2">
               Pixel art by{" "}
@@ -837,5 +840,6 @@ await processor.startCamera(canvas);`}</code>
         </section>
       </article>
     </main>
+    </DirectionalTransition>
   );
 }

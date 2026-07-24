@@ -17,6 +17,7 @@ import {
   SidebarMenuSubButton,
   SidebarMenuSubItem,
 } from "@/components/ui/sidebar";
+import { TransitionLink } from "@/components/transition-link";
 
 type NavItemProps = {
   title: string;
@@ -31,13 +32,20 @@ type NavItemProps = {
 
 // Component for simple navigation items without children
 function SimpleNavItem({ title, url, icon: Icon }: NavItemProps) {
+  const transitionTypes =
+    url === "/"
+      ? ["nav-back"]
+      : url.startsWith("/projects")
+        ? ["nav-forward"]
+        : undefined;
+
   return (
     <SidebarMenuItem>
       <SidebarMenuButton tooltip={title} asChild>
-        <a href={url}>
-          {Icon && <Icon />}
+        <TransitionLink href={url} transitionTypes={transitionTypes}>
+          {Icon ? <Icon /> : null}
           <span>{title}</span>
-        </a>
+        </TransitionLink>
       </SidebarMenuButton>
     </SidebarMenuItem>
   );
@@ -65,9 +73,16 @@ function CollapsibleNavItem({
             {items.map((subItem) => (
               <SidebarMenuSubItem key={subItem.title}>
                 <SidebarMenuSubButton asChild>
-                  <a href={subItem.url}>
+                  <TransitionLink
+                    href={subItem.url}
+                    transitionTypes={
+                      subItem.url.startsWith("/projects/")
+                        ? ["nav-forward"]
+                        : undefined
+                    }
+                  >
                     <span>{subItem.title}</span>
-                  </a>
+                  </TransitionLink>
                 </SidebarMenuSubButton>
               </SidebarMenuSubItem>
             ))}
