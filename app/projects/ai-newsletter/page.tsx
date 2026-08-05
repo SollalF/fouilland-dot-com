@@ -6,17 +6,17 @@ import { DirectionalTransition } from "@/components/directional-transition";
 import { ProjectHeroImage } from "@/components/project-hero-image";
 
 export const metadata: Metadata = {
-  title: projectDetails?.title || "AI Newsletter",
+  title: projectDetails?.title || "Daily News Scraper",
   description:
     projectDetails?.description ||
-    "A personalized AI-powered newsletter platform",
+    "A self-healing, database-backed news scraper",
 };
 
 export default function AINewsletter() {
   const safeDetails = projectDetails || {
-    title: "AI Newsletter",
+    title: "Daily News Scraper",
     projectSlug: "ai-newsletter",
-    description: "A personalized AI-powered newsletter platform",
+    description: "A self-healing, database-backed news scraper",
     longDescription: "",
     imageUrl: "/placeholder.jpg",
     tags: [] as string[],
