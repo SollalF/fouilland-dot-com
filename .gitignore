@@ -40,3 +40,21 @@ yarn-error.log*
 *.tsbuildinfo
 next-env.d.ts
 .pnpm-store/
+
+# OpenClaw / Claude agent files (never commit these into the website)
+AGENTS.md
+BOOTSTRAP.md
+HEARTBEAT.md
+IDENTITY.md
+SOUL.md
+TOOLS.md
+USER.md
+MEMORY.md
+memory/
+.agents/
+.openclaw/
+openclaw-workspace-state.json
+obsidian-vault/
+skills-lock.json
+CLAUDE.md
+.claude/
