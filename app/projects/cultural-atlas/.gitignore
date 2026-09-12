@@ -1,0 +1,6 @@
+sources/*
+!sources/*/
+sources/*/*
+!sources/*/scripts/
+!sources/*/scripts/*
+!sources/*/consensus-research.md

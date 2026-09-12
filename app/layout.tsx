@@ -7,7 +7,7 @@ import type { Metadata, Viewport } from "next";
 import { Inter as FontSans } from "next/font/google";
 import "./globals.css";
 import "@coreui/icons/css/brand.min.css";
-import "@coreui/icons/css/linear.min.css";
+import "@coreui/icons/css/free.min.css";
 
 const fontSans = FontSans({
   subsets: ["latin"],
